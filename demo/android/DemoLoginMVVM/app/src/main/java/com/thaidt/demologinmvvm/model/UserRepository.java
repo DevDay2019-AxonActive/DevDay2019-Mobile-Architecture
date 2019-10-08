@@ -1,6 +1,7 @@
 package com.thaidt.demologinmvvm.model;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -9,9 +10,13 @@ public class UserRepository {
 
     private UserDao userDao;
 
-    public UserRepository(Application application){
+    public UserRepository(Context application){
         UserDatabase database = UserDatabase.getInstance(application);
         userDao = database.userDao();
+    }
+
+    public UserRepository(UserDao userDao){
+        this.userDao = userDao;
     }
 
     public void insert(User user){
