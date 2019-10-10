@@ -1,4 +1,4 @@
-package com.thaidt.demologinmvvm.ui;
+package com.axonactive.demomvvm.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -9,11 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import com.thaidt.demologinmvvm.R;
-import com.thaidt.demologinmvvm.databinding.ActivityLoginBinding;
-import com.thaidt.demologinmvvm.model.User;
-import com.thaidt.demologinmvvm.viewmodel.DataWrapper;
-import com.thaidt.demologinmvvm.viewmodel.LoginViewModel;
+import com.axonactive.demomvvm.R;
+import com.axonactive.demomvvm.databinding.ActivityLoginBinding;
+import com.axonactive.demomvvm.model.User;
+import com.axonactive.demomvvm.viewmodel.DataWrapper;
+import com.axonactive.demomvvm.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 

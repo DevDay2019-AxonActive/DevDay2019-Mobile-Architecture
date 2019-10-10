@@ -1,4 +1,4 @@
-package com.thaidt.demologinmvvm;
+package com.axonactive.demomvvm;
 
 import org.junit.Test;
 

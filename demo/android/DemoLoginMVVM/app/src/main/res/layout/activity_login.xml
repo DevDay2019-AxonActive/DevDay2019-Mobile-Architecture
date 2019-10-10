@@ -9,7 +9,7 @@
 
         <variable
             name="loginVM"
-            type="com.thaidt.demologinmvvm.viewmodel.LoginViewModel" />
+            type="com.axonactive.demomvvm.viewmodel.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

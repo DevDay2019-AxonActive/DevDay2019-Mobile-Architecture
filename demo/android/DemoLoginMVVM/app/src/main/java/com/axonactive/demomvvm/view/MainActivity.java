@@ -1,4 +1,4 @@
-package com.thaidt.demologinmvvm.ui;
+package com.axonactive.demomvvm.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.thaidt.demologinmvvm.R;
+import com.axonactive.demomvvm.R;
 
 public class MainActivity extends AppCompatActivity {
 
