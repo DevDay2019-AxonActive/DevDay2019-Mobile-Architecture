@@ -1,6 +1,6 @@
 # books
 
-A new Flutter project.
+Project for AAVN DevDay 2019.
 
 ## Getting Started
 

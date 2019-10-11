@@ -18,8 +18,7 @@ class Bloc extends Object with Validator {
     _password.close();
   }
 
-  btnLoginPressed() {
-    
+  btnLoginPressed() {  
   }
 }
 

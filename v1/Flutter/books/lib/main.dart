@@ -1,3 +1,4 @@
+import 'package:books/screen/books_list_view.dart';
 import 'package:flutter/material.dart';
 import 'screen/login_view.dart';
 import 'package:books/bloc/login_bloc/provider.dart';
@@ -16,10 +17,15 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('BOOKS'),
+            title: Text('Login'),
           ),
           body: LoginView(),
         ),
+        initialRoute: "/",
+        routes: {
+          "": (context) => LoginView(),
+          "listbooks": (context) => BookListView(),
+        },
       ),
     );
   }

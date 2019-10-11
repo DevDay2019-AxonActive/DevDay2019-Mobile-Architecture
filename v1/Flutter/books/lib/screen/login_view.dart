@@ -1,6 +1,7 @@
 import 'package:books/bloc/login_bloc/bloc.dart';
 import 'package:books/bloc/login_bloc/provider.dart';
 import 'package:books/mixin/validator.dart';
+import 'package:books/screen/books_list_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -13,6 +14,11 @@ class LoginView extends StatefulWidget {
 class LoginViewState extends State<LoginView> with Validator {
   final formKey = GlobalKey<FormState>();
   var _throwShotAway = false;
+
+  final emailController =
+      TextEditingController(text: 'hieu.nguyen@axonactive.com');
+  final passwordController = TextEditingController(text: 'khongbiet');
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
@@ -38,6 +44,7 @@ class LoginViewState extends State<LoginView> with Validator {
       stream: bloc.email,
       builder: (context, snapshot) {
         return TextField(
+          controller: emailController,
           onChanged: bloc.changeEmail,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
@@ -56,6 +63,7 @@ class LoginViewState extends State<LoginView> with Validator {
       stream: bloc.password,
       builder: (context, snapshot) {
         return TextField(
+          controller: passwordController,
           onChanged: bloc.changePassword,
           obscureText: true,
           decoration: InputDecoration(
@@ -90,11 +98,16 @@ class LoginViewState extends State<LoginView> with Validator {
         builder: (context, snapshot) {
           return RaisedButton(
             child: Text("Login"),
-            onPressed: snapshot.hasData ? () {
-              bloc.btnLoginPressed();
-            } : null,
+            // onPressed: snapshot.hasData ? () {
+            //   // bloc.btnLoginPressed();
+            //   // Navigator.push(context, MaterialPageRoute(builder: (context) => BookListView()));
+            //   Navigator.pushNamed(context, "listbooks");
+            // } : null,
+
+            onPressed: () {
+              Navigator.pushNamed(context, "listbooks");
+            },
           );
         });
   }
 }
-
