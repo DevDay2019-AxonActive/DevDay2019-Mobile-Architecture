@@ -7,7 +7,9 @@ class BookListView extends StatelessWidget {
       appBar: AppBar(
         title: Text("List of Books"),
       ),
-      body: Text("This is the book list view"),
+      body: Center(
+        child: Text("This is the book list view"),
+      ),
     );
   }
 }
