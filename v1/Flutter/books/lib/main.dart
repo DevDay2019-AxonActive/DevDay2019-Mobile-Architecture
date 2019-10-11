@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:login_bloc/src/blocs/provider.dart';
-import 'screens/login_view.dart';
+import 'screen/login_view.dart';
+import 'package:books/bloc/login_bloc/provider.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
+  @override
   Widget build(context) {
     return Provider(
       child: MaterialApp(
@@ -14,9 +16,9 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('AAVN DEV DAY 2019'),
+            title: Text('BOOKS'),
           ),
-          body: LogInScreen(),
+          body: LoginView(),
         ),
       ),
     );

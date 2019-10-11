@@ -1,16 +1,16 @@
+import 'package:books/bloc/login_bloc/bloc.dart';
+import 'package:books/bloc/login_bloc/provider.dart';
+import 'package:books/mixin/validator.dart';
 import 'package:flutter/material.dart';
-import 'package:login_bloc/src/blocs/bloc.dart';
-import 'package:login_bloc/src/blocs/provider.dart';
-import 'package:login_bloc/src/mixins/validator.dart';
 
-class LogInScreen extends StatefulWidget {
+class LoginView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return LoginViewState();
   }
 }
 
-class LoginViewState extends State<LogInScreen> with Validator {
+class LoginViewState extends State<LoginView> with Validator {
   final formKey = GlobalKey<FormState>();
   var _throwShotAway = false;
   @override
@@ -97,3 +97,4 @@ class LoginViewState extends State<LogInScreen> with Validator {
         });
   }
 }
+
