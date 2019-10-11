@@ -6,4 +6,8 @@ class SearchingCriteria {
 
   SearchingCriteria.fromJson(Map<String, dynamic> json)
       : keyword = json['keyword'];
+
+  Map<String, dynamic> toJson() => {
+        'keyword': keyword,
+      };
 }

@@ -1,7 +1,6 @@
 import 'package:books/bloc/login_bloc/bloc.dart';
 import 'package:books/bloc/login_bloc/provider.dart';
 import 'package:books/mixin/validator.dart';
-import 'package:books/screen/books_list_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {

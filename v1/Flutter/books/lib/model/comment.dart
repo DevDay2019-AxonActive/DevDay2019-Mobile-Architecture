@@ -19,4 +19,13 @@ class Comment {
         parent = json['parent'],
         parentId = json['parentId'],
         user = json['user'];
+
+  Map<String, dynamic> toJson() => {
+        'bookDetail': bookDetail,
+        'content': content,
+        'id': id,
+        'parent': parent,
+        'parentId': parentId,
+        'user': user,
+      };
 }

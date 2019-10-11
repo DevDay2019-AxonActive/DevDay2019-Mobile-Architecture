@@ -14,4 +14,11 @@ class Rating {
         id = json['id'],
         user = json['user'],
         value = json['value'];
+
+  Map<String, dynamic> toJson() => {
+        'bookDetail': bookDetail,
+        'id': id,
+        'user': user,
+        'value': value,
+      };
 }

@@ -11,4 +11,10 @@ class Tag {
       : bookDetail = json['bookDetail'],
         id = json['id'],
         name = json['name'];
+
+  Map<String, dynamic> toJson() => {
+        'bookDetail': bookDetail,
+        'id': id,
+        'name': name,
+      };
 }
