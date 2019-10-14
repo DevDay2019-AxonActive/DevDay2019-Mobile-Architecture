@@ -1,6 +1,5 @@
 import 'package:books/bloc/base_bloc.dart';
 import 'package:books/bloc/login_bloc/login_bloc.dart';
-import 'package:books/bloc/login_bloc/login_bloc_provider.dart';
 import 'package:books/mixin/validator.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,6 @@ class LoginView extends StatefulWidget {
 
 class LoginViewState extends State<LoginView> with Validator {
   final formKey = GlobalKey<FormState>();
-  var _throwShotAway = false;
 
   final emailController =
       TextEditingController(text: 'devday2019@axonactive.com');
@@ -21,26 +19,24 @@ class LoginViewState extends State<LoginView> with Validator {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = LoginBlocProvider.of(context);
-    // final bloc = BlocProvider.of<LoginBloc>(context);
     return Container(
       margin: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0, bottom: 20.0),
       child: Form(
         key: formKey,
         child: Column(
           children: <Widget>[
-            emailField(bloc),
-            passwordField(bloc),
+            emailField(context),
+            passwordField(context),
             Container(margin: EdgeInsets.only(top: 10.0)),
-            // rememberCheckbox(),
-            submitButton(bloc),
+            submitButton(context),
           ],
         ),
       ),
     );
   }
 
-  Widget emailField(LoginBloc bloc) {
+  Widget emailField(BuildContext context) {
+    final bloc = BlocProvider.of<LoginBloc>(context);
     return StreamBuilder(
       stream: bloc.email,
       builder: (context, snapshot) {
@@ -59,7 +55,8 @@ class LoginViewState extends State<LoginView> with Validator {
     );
   }
 
-  Widget passwordField(LoginBloc bloc) {
+  Widget passwordField(BuildContext context) {
+    final bloc = BlocProvider.of<LoginBloc>(context);
     return StreamBuilder(
       stream: bloc.password,
       builder: (context, snapshot) {
@@ -78,33 +75,13 @@ class LoginViewState extends State<LoginView> with Validator {
     );
   }
 
-  Widget rememberCheckbox() {
-    return Row(children: <Widget>[
-      Checkbox(
-          checkColor: Colors.white,
-          activeColor: Colors.black,
-          value: _throwShotAway,
-          onChanged: (bool newValue) {
-            setState(() {
-              _throwShotAway = newValue;
-            });
-          }),
-      Text("Remember me")
-    ]);
-  }
-
-  Widget submitButton(LoginBloc bloc) {
+  Widget submitButton(BuildContext context) {
+    final bloc = BlocProvider.of<LoginBloc>(context);
     return StreamBuilder(
         stream: bloc.submitValid,
         builder: (context, snapshot) {
           return RaisedButton(
             child: Text("Login"),
-            // onPressed: snapshot.hasData ? () {
-            //   // bloc.btnLoginPressed();
-            //   // Navigator.push(context, MaterialPageRoute(builder: (context) => BookListView()));
-            //   Navigator.pushNamed(context, "listbooks");
-            // } : null,
-
             onPressed: () {
               Navigator.pushNamed(context, "listbooks");
             },

@@ -6,7 +6,7 @@ abstract class BaseBloc {
   void dispose();
 }
 
-class BlocProvider<T extends BaseBloc> extends StatefulWidget {
+  class BlocProvider<T extends BaseBloc> extends StatefulWidget {
   BlocProvider({
     Key key,
     @required this.child,

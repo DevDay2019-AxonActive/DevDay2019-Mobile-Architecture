@@ -1,6 +1,8 @@
-import 'package:books/bloc/login_bloc/login_bloc_provider.dart';
+import 'package:books/bloc/base_bloc.dart';
+import 'package:books/bloc/login_bloc/login_bloc.dart';
 import 'package:books/screen/books_list_view.dart';
 import 'package:flutter/material.dart';
+
 import 'screen/login_view.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +11,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(context) {
-    return LoginBlocProvider(
+    return BlocProvider<LoginBloc>(
+      bloc: LoginBloc(),
       child: MaterialApp(
         title: 'Log Me In!',
         theme: ThemeData(
