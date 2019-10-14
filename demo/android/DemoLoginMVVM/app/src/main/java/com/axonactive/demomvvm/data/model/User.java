@@ -1,4 +1,4 @@
-package com.axonactive.demomvvm.model;
+package com.axonactive.demomvvm.data.model;
 
 public class User {
     private int id;

@@ -11,10 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="com.axonactive.demomvvm.MainApplication"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name="com.axonactive.demomvvm.view.MainActivity"></activity>
+        <activity android:name="com.axonactive.demomvvm.view.main.MainActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
 
-        <activity android:name="com.axonactive.demomvvm.view.LoginActivity">
+        <activity android:name="com.axonactive.demomvvm.view.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

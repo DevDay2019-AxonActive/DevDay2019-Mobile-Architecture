@@ -1,52 +1,61 @@
-package com.axonactive.demomvvm.view;
+package com.axonactive.demomvvm.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
 import com.axonactive.demomvvm.R;
-import com.axonactive.demomvvm.databinding.ActivityLoginBinding;
-import com.axonactive.demomvvm.model.User;
-import com.axonactive.demomvvm.viewmodel.DataWrapper;
+import com.axonactive.demomvvm.data.model.ResponseData;
+import com.axonactive.demomvvm.data.model.User;
+import com.axonactive.demomvvm.view.main.MainActivity;
 import com.axonactive.demomvvm.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-
-    private ActivityLoginBinding binding;
+    private Button btnLogin;
+    private EditText edtUsername;
+    private EditText edtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        initViewModel();
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        btnLogin = findViewById(R.id.btn_login);
+        edtUsername = findViewById(R.id.edt_username);
+        edtPassword = findViewById(R.id.edt_password);
 
-        binding.setLifecycleOwner(this);
+        edtUsername.setText("aaa@aaa.com");
+        edtPassword.setText("111111");
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtPassword.clearFocus();
+                edtUsername.clearFocus();
+                loginViewModel.login(edtUsername.getText().toString(), edtPassword.getText().toString());
+            }
+        });
+    }
+
+    private void initViewModel() {
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-
-        binding.setLoginVM(loginViewModel);
         observeData();
-
-//        Button button = findViewById(R.id.btn_login);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                loginViewModel.login();
-//            }
-//        });
     }
 
     public void observeData() {
-        loginViewModel.getUserLiveData().observe(this, new Observer<DataWrapper<User>>() {
+        loginViewModel.getUserLiveData().observe(this, new Observer<ResponseData<User>>() {
             @Override
-            public void onChanged(DataWrapper<User> data) {
+            public void onChanged(ResponseData<User> data) {
                 View loadingView = findViewById(R.id.view_loading);
                 switch (data.getState()) {
                     case LOADING:
@@ -59,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                         break;
                     case ERROR:
                         loadingView.setVisibility(View.GONE);
-                        Toast.makeText(LoginActivity.this, "Error: " +data.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Error: " + data.getMessage(), Toast.LENGTH_LONG).show();
                         break;
                     default:
                         loadingView.setVisibility(View.GONE);
@@ -69,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void goToMainActivity(){
+    private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

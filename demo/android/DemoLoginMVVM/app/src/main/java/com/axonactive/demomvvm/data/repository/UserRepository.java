@@ -1,6 +1,8 @@
-package com.axonactive.demomvvm.model;
+package com.axonactive.demomvvm.data.repository;
 
 import android.content.SharedPreferences;
+
+import com.axonactive.demomvvm.data.model.User;
 import com.axonactive.demomvvm.utils.Constants;
 
 public class UserRepository {
