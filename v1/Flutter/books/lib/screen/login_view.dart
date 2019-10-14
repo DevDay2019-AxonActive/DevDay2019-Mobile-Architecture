@@ -1,5 +1,5 @@
-import 'package:books/bloc/login_bloc/bloc.dart';
-import 'package:books/bloc/login_bloc/provider.dart';
+import 'package:books/bloc/login_bloc/login_bloc.dart';
+import 'package:books/bloc/login_bloc/login_bloc_provider.dart';
 import 'package:books/mixin/validator.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class LoginViewState extends State<LoginView> with Validator {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of(context);
+    final bloc = LoginBlocProvider.of(context);
     return Container(
       margin: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0, bottom: 20.0),
       child: Form(
@@ -38,7 +38,7 @@ class LoginViewState extends State<LoginView> with Validator {
     );
   }
 
-  Widget emailField(Bloc bloc) {
+  Widget emailField(LoginBloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
       builder: (context, snapshot) {
@@ -57,7 +57,7 @@ class LoginViewState extends State<LoginView> with Validator {
     );
   }
 
-  Widget passwordField(Bloc bloc) {
+  Widget passwordField(LoginBloc bloc) {
     return StreamBuilder(
       stream: bloc.password,
       builder: (context, snapshot) {
@@ -91,7 +91,7 @@ class LoginViewState extends State<LoginView> with Validator {
     ]);
   }
 
-  Widget submitButton(Bloc bloc) {
+  Widget submitButton(LoginBloc bloc) {
     return StreamBuilder(
         stream: bloc.submitValid,
         builder: (context, snapshot) {

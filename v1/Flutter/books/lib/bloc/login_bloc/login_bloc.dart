@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:books/mixin/validator.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:books/bloc/base_bloc.dart';
 
-class Bloc extends Object with Validator {
+class LoginBloc extends BaseBloc with Validator {
   final _email = StreamController<String>.broadcast();
   final _password = StreamController<String>.broadcast();
 
