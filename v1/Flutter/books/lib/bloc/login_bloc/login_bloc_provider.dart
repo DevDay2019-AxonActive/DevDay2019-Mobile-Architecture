@@ -1,14 +1,14 @@
+import 'package:books/bloc/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
-import 'bloc.dart';
 
-class Provider extends InheritedWidget {
-  final bloc = Bloc();
+class LoginBlocProvider extends InheritedWidget {
+  final bloc = LoginBloc();
 
-  Provider({Key key, Widget child}) : super(key: key, child: child);
+  LoginBlocProvider({Key key, Widget child}) : super(key: key, child: child);
 
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
   
-  static Bloc of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider).bloc;
+  static LoginBloc of(BuildContext context) {
+    return (context.inheritFromWidgetOfExactType(LoginBlocProvider) as LoginBlocProvider).bloc;
   }
 }

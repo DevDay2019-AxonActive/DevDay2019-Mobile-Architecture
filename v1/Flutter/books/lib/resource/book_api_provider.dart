@@ -1,19 +1,31 @@
+import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' show Client;
+
 import 'package:books/model/book.dart';
 import 'package:books/resource/repository.dart';
-
-// root domain
-final _root = "";
+import 'package:books/resource/state.dart';
+import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 
 class BookApiProvider implements Source {
-  Client client = Client();
+  Client _client = Client();
 
-  @override
-  Future<List<Book>> searchBook(String keywork) async {
-    final response = await client.get('$_root/');
-    final booksSearched = json.decode(response.body);
+  // base url
+  final _baseUrl = "";
 
-    return booksSearched;
+  /* 
+  This will return a list of books based on the query provided. 
+  It will either return a success or error state.
+   */
+  
+  Future<State> searchBooksByKeyword(String keyword) async {
+    Response response;
+
+    response = await _client.get('$_baseUrl');
+
+    if (response.statusCode == 200)
+      return State<Book>.success(Book.fromJson(json.decode(response.body)));
+    else
+      return State<String>.error(response.statusCode.toString());
   }
 }

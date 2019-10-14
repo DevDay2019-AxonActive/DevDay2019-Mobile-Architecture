@@ -1,3 +1,4 @@
+import 'package:books/bloc/base_bloc.dart';
 import 'package:books/bloc/login_bloc/login_bloc.dart';
 import 'package:books/bloc/login_bloc/login_bloc_provider.dart';
 import 'package:books/mixin/validator.dart';
@@ -15,12 +16,13 @@ class LoginViewState extends State<LoginView> with Validator {
   var _throwShotAway = false;
 
   final emailController =
-      TextEditingController(text: 'hieu.nguyen@axonactive.com');
+      TextEditingController(text: 'devday2019@axonactive.com');
   final passwordController = TextEditingController(text: 'khongbiet');
 
   @override
   Widget build(BuildContext context) {
     final bloc = LoginBlocProvider.of(context);
+    // final bloc = BlocProvider.of<LoginBloc>(context);
     return Container(
       margin: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0, bottom: 20.0),
       child: Form(
