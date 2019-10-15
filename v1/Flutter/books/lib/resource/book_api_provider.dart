@@ -11,7 +11,7 @@ class BookApiProvider implements Source {
   Client _client = Client();
 
   // base url
-  final _baseUrl = "192.168.70.59:8080/";
+  final _baseUrl = "https://192.168.70.59:8080/";
   final _searchBookEndpoint = "library-core/api/books/search/";
 
   /* 
