@@ -1,7 +1,6 @@
 import 'package:books/bloc/base_bloc.dart';
-import 'package:books/bloc/search_book_bloc/search_book_bloc.dart';
+import 'package:books/bloc/search_book_bloc.dart';
 import 'package:books/model/book.dart';
-import 'package:books/screen/book_cell.dart';
 import 'package:flutter/material.dart';
 
 class BookListView extends StatefulWidget {

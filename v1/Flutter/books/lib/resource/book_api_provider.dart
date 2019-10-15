@@ -11,7 +11,8 @@ class BookApiProvider implements Source {
   Client _client = Client();
 
   // base url
-  final _baseUrl = "";
+  final _baseUrl = "192.168.70.59:8080/";
+  final _searchBookEndpoint = "library-core/api/books/search/";
 
   /* 
   This will return a list of books based on the query provided. 
@@ -21,7 +22,7 @@ class BookApiProvider implements Source {
   Future<State> searchBooksByKeyword(String keyword) async {
     Response response;
 
-    response = await _client.get('$_baseUrl');
+    response = await _client.get('$_baseUrl$_searchBookEndpoint');
 
     if (response.statusCode == 200)
       return State<Book>.success(Book.fromJson(json.decode(response.body)));
