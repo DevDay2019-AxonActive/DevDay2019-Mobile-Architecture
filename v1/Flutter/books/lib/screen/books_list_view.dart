@@ -1,5 +1,5 @@
 import 'package:books/bloc/base_bloc.dart';
-import 'package:books/bloc/search_book_bloc.dart';
+import 'package:books/bloc/book_bloc.dart';
 import 'package:books/model/book.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +11,12 @@ class BookListView extends StatefulWidget {
 }
 
 class BookListViewState extends State<BookListView> {
-  SearchBookBloc bloc;
+  BookBloc bloc;
 
   @override
   void initState() {
     super.initState();
-    bloc = SearchBookBloc();
+    bloc = BookBloc();
   }
 
   @override
@@ -28,7 +28,7 @@ class BookListViewState extends State<BookListView> {
   TextEditingController editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SearchBookBloc>(
+    return BlocProvider<BookBloc>(
       bloc: bloc,
       child: Scaffold(
         appBar: AppBar(
@@ -56,7 +56,7 @@ class BookListViewState extends State<BookListView> {
             Expanded(
                 flex: 5,
                 child: StreamBuilder(
-                    stream: bloc.bookList,
+                    stream: bloc.searchedBooks,
                     builder: (context, AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
@@ -110,15 +110,15 @@ class BookListViewState extends State<BookListView> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: <Widget>[
-                ClipRRect(
-                  child: FadeInImage.assetNetwork(
-                      width: 30,
-                      height: 30,
-                      // placeholder: 'assets/user.png',
-                      // image: result.user.profileImage.medium
-                      ),
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
+                // ClipRRect(
+                //   child: FadeInImage.assetNetwork(
+                //       width: 30,
+                //       height: 30,
+                //       placeholder: 'assets/user.png',
+                //       image: result.user.profileImage.medium
+                //       ),
+                //   borderRadius: BorderRadius.circular(25.0),
+                // ),
                 SizedBox(width: 10.0),
                 Text(result.name),
                 Spacer(),
