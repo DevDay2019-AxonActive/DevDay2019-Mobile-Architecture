@@ -8,6 +8,11 @@ import 'package:http/http.dart' show Client;
 import 'package:http/http.dart';
 
 class BookApiProvider implements Source {
+
+  //Singleton
+  static final BookApiProvider _bookApiProvider = BookApiProvider._private();
+  BookApiProvider._private();
+  factory BookApiProvider() => _bookApiProvider;
   Client _client = Client();
 
   // base url
