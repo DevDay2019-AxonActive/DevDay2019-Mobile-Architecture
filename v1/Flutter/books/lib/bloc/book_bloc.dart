@@ -51,5 +51,6 @@ class BookBloc extends BaseBloc {
   @override
   void dispose() {
     _keywordSubject.close();
+    _allBooksSubject.close();
   }
 }

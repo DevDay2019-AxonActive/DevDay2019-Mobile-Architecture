@@ -77,7 +77,7 @@ class BookListViewState extends State<BookListView> {
                               SizedBox(height: 20.0),
                               Flexible(
                                   child: Text(
-                                'Type a word',
+                                snapshot.error.toString(),
                                 style: Theme.of(context).textTheme.display1,
                               ))
                             ],
