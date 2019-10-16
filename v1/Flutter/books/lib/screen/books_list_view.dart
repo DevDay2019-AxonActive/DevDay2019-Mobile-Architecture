@@ -1,6 +1,7 @@
 import 'package:books/bloc/base_bloc.dart';
 import 'package:books/bloc/book_bloc.dart';
 import 'package:books/model/book.dart';
+import 'package:books/screen/book_cell.dart';
 import 'package:flutter/material.dart';
 
 class BookListView extends StatefulWidget {
@@ -53,86 +54,29 @@ class BookListViewState extends State<BookListView> {
                 ),
               ),
             ),
-            Expanded(
-                flex: 5,
-                child: StreamBuilder(
-                    stream: bloc.searchedBooks,
-                    builder: (context, AsyncSnapshot<dynamic> snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                            itemCount: snapshot.data.results.length,
-                            itemBuilder: (context, index) {
-                              return listItem(snapshot.data.results[index]);
-                            });
-                      } else {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              // Image.asset(
-                              //   'assets/search_image.png',
-                              //   width: 180.0,
-                              //   height: 180.0,
-                              // ),
-                              SizedBox(height: 20.0),
-                              Flexible(
-                                  child: Text(
-                                snapshot.error.toString(),
-                                style: Theme.of(context).textTheme.display1,
-                              ))
-                            ],
-                          ),
-                        );
-                      }
-                    }),
-              ),
+            buildListBook(bloc)
           ],
         ),
       ),
     );
   }
 
-  Widget listItem(Book result) {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 10.0,
-      margin: EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Container(
-            // child: Image.network(result.details.regular),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: <Widget>[
-                // ClipRRect(
-                //   child: FadeInImage.assetNetwork(
-                //       width: 30,
-                //       height: 30,
-                //       placeholder: 'assets/user.png',
-                //       image: result.user.profileImage.medium
-                //       ),
-                //   borderRadius: BorderRadius.circular(25.0),
-                // ),
-                SizedBox(width: 10.0),
-                Text(result.name),
-                Spacer(),
-                // GestureDetector(
-                //   onTap: (){
-                //     bloc.shareImage(result.urls.regular);
-                //   },
-                //   child: Icon(Icons.share, color: Colors.white),
-                // )
-              ],
-            ),
-          )
-        ],
-      ),
+  Widget buildListBook(BookBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.allBooks,
+      builder: (BuildContext context, AsyncSnapshot<List<Book>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            return new BookCell(snapshot.data[index]);
+          },
+        );
+      },
     );
   }
 }
