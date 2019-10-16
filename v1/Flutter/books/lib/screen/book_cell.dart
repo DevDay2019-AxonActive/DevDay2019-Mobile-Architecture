@@ -9,7 +9,9 @@ class BookCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ListTile(),
+        ListTile(
+          title: Text(aBook.author),
+        ),
         Divider(),
       ],
     );

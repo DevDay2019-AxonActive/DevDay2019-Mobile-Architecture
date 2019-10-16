@@ -1,7 +1,6 @@
 import 'package:books/bloc/base_bloc.dart';
 import 'package:books/bloc/book_bloc.dart';
 import 'package:books/model/book.dart';
-import 'package:books/screen/book_cell.dart';
 import 'package:flutter/material.dart';
 
 class BookListView extends StatefulWidget {
@@ -18,6 +17,7 @@ class BookListViewState extends State<BookListView> {
   void initState() {
     super.initState();
     bloc = BookBloc();
+    bloc.fetchAllBook();
   }
 
   @override
@@ -42,8 +42,8 @@ class BookListViewState extends State<BookListView> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (value) {
-                      bloc.changeKeyword(value);
-                    },
+                    bloc.changeKeyword(value);
+                  },
                   controller: editingController,
                   decoration: InputDecoration(
                       hintText: "Search",
@@ -54,7 +54,10 @@ class BookListViewState extends State<BookListView> {
                 ),
               ),
             ),
-            buildListBook(bloc)
+            Expanded(
+              flex: 5,
+              child: buildListBook(bloc),
+            ),
           ],
         ),
       ),
@@ -71,9 +74,13 @@ class BookListViewState extends State<BookListView> {
           );
         }
         return ListView.builder(
+          padding: const EdgeInsets.all(8),
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
-            return new BookCell(snapshot.data[index]);
+            return new ListTile(
+              title: Text(snapshot.data[index].name),
+              subtitle: Text(snapshot.data[index].author),
+            );
           },
         );
       },
