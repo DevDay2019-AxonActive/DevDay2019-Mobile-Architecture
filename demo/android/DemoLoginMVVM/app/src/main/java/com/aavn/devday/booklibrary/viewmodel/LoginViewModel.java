@@ -9,10 +9,15 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.data.model.User;
 import com.aavn.devday.booklibrary.data.repository.UserRepository;
 import com.aavn.devday.booklibrary.utils.Constants;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginViewModel extends AndroidViewModel {
     private MutableLiveData<ResponseData<User>> loginLiveData;
@@ -22,7 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
     public LoginViewModel(@NonNull Application application) {
         super(application);
         SharedPreferences pref = application.getApplicationContext().getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE);
-        userRepository = new UserRepository(pref);
+        userRepository = new UserRepository();
     }
 
     //For test
@@ -51,12 +56,18 @@ public class LoginViewModel extends AndroidViewModel {
 
         loginLiveData.setValue(new ResponseData<User>(ResponseData.State.LOADING));
 
-        User result = userRepository.login(username, password);
-        if (result != null) {
-            loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, result));
-        } else {
-            loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, "wrong username or password"));
-        }
+        userRepository.login(username, password).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, response.body()));
+                UserManager.getInstance().setUserInfo(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, "wrong username or password"));
+            }
+        });
     }
 
 }

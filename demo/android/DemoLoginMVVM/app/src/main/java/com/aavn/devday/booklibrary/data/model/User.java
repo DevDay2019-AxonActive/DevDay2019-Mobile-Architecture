@@ -1,21 +1,17 @@
 package com.aavn.devday.booklibrary.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
-    private int id;
+    @SerializedName("username")
     private String username;
-    private String password;
+    @SerializedName("fullName")
+    private String fullName;
+    @SerializedName("email")
+    private String email;
 
-    public User(String username, String password) {
+    public User(String username) {
         this.username = username;
-        this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -26,11 +22,19 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
