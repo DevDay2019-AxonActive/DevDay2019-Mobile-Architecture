@@ -8,8 +8,10 @@ class Repository {
   Repository._private();
   factory Repository() => _repository;
 
-  BookApiProvider _imageProvider = BookApiProvider();
+  BookApiProvider _bookApiProvider = BookApiProvider();
 
   Future<State> searchBook(keyword) =>
-      _imageProvider.searchBooksByKeyword(keyword);
+      _bookApiProvider.searchBooksByKeyword(keyword);
+
+  Future<State> getListBook() => _bookApiProvider.getBooks();
 }
