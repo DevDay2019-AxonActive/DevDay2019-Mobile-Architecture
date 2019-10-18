@@ -32,7 +32,11 @@ public class BookListViewModel extends ViewModel {
         bookRepository.searchBook(keyword).enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                bookListLiveData.setValue(ResponseData.success(response.body()));
+                if (response.isSuccessful()) {
+                    bookListLiveData.setValue(ResponseData.success(response.body()));
+                } else {
+                    bookListLiveData.setValue(ResponseData.error("Can not load book list!"));
+                }
             }
 
             @Override
@@ -57,12 +61,16 @@ public class BookListViewModel extends ViewModel {
 //        bookListLiveData.setValue(ResponseData.success(dummyBookList));
     }
 
-    public void fetchDefaultBookList(){
+    public void fetchDefaultBookList() {
         bookListLiveData.setValue(ResponseData.loading());
         bookRepository.getDefaultBook().enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                bookListLiveData.setValue(ResponseData.success(response.body()));
+                if (response.isSuccessful()) {
+                    bookListLiveData.setValue(ResponseData.success(response.body()));
+                } else {
+                    bookListLiveData.setValue(ResponseData.error("Can not load book list!"));
+                }
             }
 
             @Override

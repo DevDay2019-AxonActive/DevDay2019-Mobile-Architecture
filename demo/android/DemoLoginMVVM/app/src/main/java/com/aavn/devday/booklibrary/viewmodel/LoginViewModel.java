@@ -59,13 +59,17 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.login(username, password).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, response.body()));
-                UserManager.getInstance().setUserInfo(response.body());
+                if (response.isSuccessful()) {
+                    loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, response.body()));
+                    UserManager.getInstance().setUserInfo(response.body());
+                } else {
+                    loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, "wrong username or password"));
+                }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, "wrong username or password"));
+                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, t.getMessage()));
             }
         });
     }
