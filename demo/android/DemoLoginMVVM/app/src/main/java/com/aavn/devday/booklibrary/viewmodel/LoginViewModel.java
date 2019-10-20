@@ -1,38 +1,37 @@
 package com.aavn.devday.booklibrary.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.data.model.User;
 import com.aavn.devday.booklibrary.data.repository.UserRepository;
-import com.aavn.devday.booklibrary.utils.Constants;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
-public class LoginViewModel extends AndroidViewModel {
+public class LoginViewModel extends ViewModel {
     private MutableLiveData<ResponseData<User>> loginLiveData;
 
     private UserRepository userRepository;
 
-    public LoginViewModel(@NonNull Application application) {
-        super(application);
-        SharedPreferences pref = application.getApplicationContext().getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE);
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    public LoginViewModel() {
         userRepository = new UserRepository();
     }
 
     //For test
-    public LoginViewModel(@NonNull Application application, UserRepository userRepo) {
-        super(application);
+    public LoginViewModel(UserRepository userRepo) {
         userRepository = userRepo;
     }
 
@@ -56,22 +55,32 @@ public class LoginViewModel extends AndroidViewModel {
 
         loginLiveData.setValue(new ResponseData<User>(ResponseData.State.LOADING));
 
-        userRepository.login(username, password).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, response.body()));
-                    UserManager.getInstance().setUserInfo(response.body());
-                } else {
-                    loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, "wrong username or password"));
-                }
-            }
+        userRepository.login(username, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<User>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        compositeDisposable.add(d);
+                    }
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, t.getMessage()));
-            }
-        });
+                    @Override
+                    public void onSuccess(User response) {
+                        loginLiveData.setValue(new ResponseData<User>(ResponseData.State.SUCCESS, response));
+                        UserManager.getInstance().setUserInfo(response);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        loginLiveData.setValue(new ResponseData<User>(ResponseData.State.ERROR, e.getMessage()));
+                    }
+                });
     }
 
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.dispose();
+    }
 }

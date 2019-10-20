@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aavn.devday.booklibrary.R;
+import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.viewmodel.BookListViewModel;
@@ -64,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadDefaultBookList();
+
+        Toast.makeText(this, "Welcome " + UserManager.getInstance().getUserInfo().getUsername(), Toast.LENGTH_LONG).show();
     }
 
-    private void bindView(){
+    private void bindView() {
         loadingView = findViewById(R.id.view_loading);
         tvErrorMsg = findViewById(R.id.tv_error_message);
         rvBookList = findViewById(R.id.rv_book_list);
