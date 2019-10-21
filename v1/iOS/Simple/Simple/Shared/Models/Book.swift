@@ -1,11 +1,19 @@
 import Foundation
 import ObjectMapper
 
-class Book:Mappable, CustomStringConvertible {
+class Book:Mappable, CustomStringConvertible, Equatable {
+    
     var id : Int = 0
     var title : String = ""
     var autor : String = ""
     var genre : String = ""
+    
+    static func == (lhs: Book, rhs: Book) -> Bool {
+        return lhs.id == rhs.id
+        && lhs.title == rhs.title
+        && lhs.autor == rhs.autor
+        && lhs.genre == rhs.genre
+    }
     
     var description: String {
            var result = "id: \(String(describing: id))\n"

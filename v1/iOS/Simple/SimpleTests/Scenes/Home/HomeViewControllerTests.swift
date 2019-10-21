@@ -113,6 +113,7 @@ class HiomeViewControllerTests: XCTestCase
     func testShouldConfigureTableViewCellToDisplayBook()
     {
       // Given
+      loadView()
       let tableView = sut.booksTableView
       let testDisplayBooks = [Home.FetchBook.ViewModel.DisplayedBook(title: "abc123")]
       sut.displayedBooks = testDisplayBooks
