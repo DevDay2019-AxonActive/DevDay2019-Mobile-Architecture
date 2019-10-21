@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
 
-        edtUsername.setText("aaa@aaa.com");
-        edtPassword.setText("111111");
+        edtUsername.setText("simple");
+        edtPassword.setText("simple");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                     case SUCCESS:
                         loadingView.setVisibility(View.GONE);
                         goToMainActivity();
-                        Toast.makeText(LoginActivity.this, "Welcome " + data.getData().getUsername(), Toast.LENGTH_LONG).show();
                         break;
                     case ERROR:
                         loadingView.setVisibility(View.GONE);

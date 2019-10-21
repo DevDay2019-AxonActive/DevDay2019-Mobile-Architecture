@@ -6,6 +6,7 @@ import com.aavn.devday.booklibrary.data.model.User;
 
 import java.util.List;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -14,6 +15,6 @@ import retrofit2.http.Query;
 
 public interface UserService {
     @GET("user/login")
-    public Call<User> login(@Query("username") String username
+    public Single<User> login(@Query("username") String username
             , @Query("password") String password);
 }
