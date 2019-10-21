@@ -1,19 +1,11 @@
-//
-//  Book.swift
-//  Simple
-//
-//  Created by Dai Doan Van on 10/14/19.
-//  Copyright © 2019 Clean Swift LLC. All rights reserved.
-//
-
 import Foundation
 import ObjectMapper
 
 class Book:Mappable, CustomStringConvertible {
-    var id = 0
-    var title = ""
-    var autor = ""
-    var genre = ""
+    var id : Int = 0
+    var title : String = ""
+    var autor : String = ""
+    var genre : String = ""
     
     var description: String {
            var result = "id: \(String(describing: id))\n"
@@ -21,10 +13,15 @@ class Book:Mappable, CustomStringConvertible {
            return result
        }
     
+    required convenience init(id:Int, title:String, autor:String, genre:String) {
+        self.init()
+    }
+    
     //Impl. of Mappable protocol
     required convenience init?(map: Map) {
         self.init()
     }
+    
     func mapping(map: Map) {
         id    <- map["id"]
         title <- map["name"]
