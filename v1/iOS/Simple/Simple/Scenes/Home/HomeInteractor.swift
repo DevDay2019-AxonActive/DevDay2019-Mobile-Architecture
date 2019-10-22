@@ -5,6 +5,7 @@ protocol HomeBusinessLogic
   func showGreeting(request: Home.ShowGreeting.Request)
   func fetchBooks()
   func filterContentForSearchText(_ searchText: String)
+    func searchBooks(_ searchText: String)
 }
 
 protocol HomeDataStore
@@ -49,4 +50,12 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore
          let response = Home.FetchBook.Response(books: filteredBooks)
         self.presenter?.presentFetchedBooks(response: response)
        }
+    
+    func searchBooks(_ searchText: String) {
+        booksWorker.searchBooks(textSearch: searchText) { (books) -> Void in
+        self.books = books
+        let response = Home.FetchBook.Response(books: books)
+        self.presenter?.presentFetchedBooks(response: response)
+        }
+    }
 }

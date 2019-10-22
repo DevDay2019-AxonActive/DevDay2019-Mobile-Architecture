@@ -33,6 +33,7 @@ enum Home
         struct DisplayedBook
          {
             var title: String?
+            var coverUrl: String?
          }
          var displayedBooks: [DisplayedBook]
         

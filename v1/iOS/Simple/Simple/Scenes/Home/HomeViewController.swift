@@ -70,9 +70,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = true
     definesPresentationContext = true
+    searchController.searchBar.delegate = self
     
     booksTableView.estimatedRowHeight = 50
-    booksTableView.rowHeight = UITableView.automaticDimension
+    booksTableView.rowHeight = UITableViewAutomaticDimension
     
     showGreeting()
   }
@@ -104,6 +105,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic
 class BookCell: UITableViewCell {
     
     @IBOutlet weak var bookTitleLabel: UILabel!
+    @IBOutlet weak var imgCover: UIImageView!
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -118,17 +120,44 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell?.bookTitleLabel.text = displayedBooks[indexPath.row].title
         
+        let coverStr = displayedBooks[indexPath.row].coverUrl!
+        let url = NSURL(string: coverStr)!
+        let request = NSMutableURLRequest(url: url as URL)
+        let session = URLSession.shared
+
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                print("error: \(error!.localizedDescription): \(String(describing: error))")
+            }
+            else if data != nil {
+                DispatchQueue.main.async() {
+                    cell?.imgCover.image  = UIImage(data: data!)
+                }
+            }
+
+        }
+        task.resume()
+        
         return cell!
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-         return UITableView.automaticDimension
+         return UITableViewAutomaticDimension
     }
 }
 
 extension HomeViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
-    let searchBar = searchController.searchBar
-    self.interactor?.filterContentForSearchText(searchBar.text!)
+//    let searchBar = searchController.searchBar
+//    self.interactor?.filterContentForSearchText(searchBar.text!)
   }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("search")
+        if let text = searchBar.text {
+            self.interactor?.searchBooks(text)
+        }
+    }
 }
