@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 protocol HomeDisplayLogic: class
 {
@@ -119,27 +120,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
           cell = BookCell(style: .value1, reuseIdentifier: "bookCell")
         }
         cell?.bookTitleLabel.text = displayedBooks[indexPath.row].title
-        
-        let coverStr = displayedBooks[indexPath.row].coverUrl!
-        
-        
-        let url = NSURL(string: coverStr)!
-        let request = NSMutableURLRequest(url: url as URL)
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                print("error: \(error!.localizedDescription): \(String(describing: error))")
-            }
-            else if data != nil {
-                DispatchQueue.main.async() {
-                    cell?.imgCover.image  = UIImage(data: data!)
-                }
-            }
-
+        if(!displayedBooks[indexPath.row].coverUrl.isEmpty) {
+            let url = URL(string: displayedBooks[indexPath.row].coverUrl)!
+            let image =  UIImage(named: "book")
+            cell!.imgCover.kf.setImage(with: url, placeholder: image)
         }
-        task.resume()
-        
         return cell!
     }
     
