@@ -1,16 +1,10 @@
-//
-//  API.swift
-//  Simple
-//
-//  Created by Dai Doan Van on 10/14/19.
-//  Copyright © 2019 Clean Swift LLC. All rights reserved.
-//
-
 import Foundation
 
-struct K {
+let baseUrl = "http://192.168.70.59:8080/library-core/api/"
+
+struct GetBooks {
     struct ProductionServer {
-        static let baseURL = "https://api.medium.com/v1"
+        static let url = baseUrl + "books"
     }
     
     struct APIParameterKey {
@@ -18,6 +12,18 @@ struct K {
         static let email = "email"
     }
 }
+
+struct SearchBook {
+    struct ProductionServer {
+        static let url = "http://192.168.70.59:8080/library-core/api/books"
+    }
+    
+    struct APIParameterKey {
+        static let password = "password"
+        static let email = "email"
+    }
+}
+
 
 enum HTTPHeaderField: String {
     case authentication = "Authorization"

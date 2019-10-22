@@ -1,11 +1,3 @@
-//
-//  AuthenticationWorker.swift
-//  Simple
-//
-//  Created by Raymond Law on 6/25/18.
-//  Copyright © 2018 Clean Swift LLC. All rights reserved.
-//
-
 import Foundation
 
 class AuthenticationWorker

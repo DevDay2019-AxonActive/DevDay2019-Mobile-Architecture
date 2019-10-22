@@ -1,11 +1,3 @@
-//
-//  Response.swift
-//  Simple
-//
-//  Created by Dai Doan Van on 10/14/19.
-//  Copyright © 2019 Clean Swift LLC. All rights reserved.
-//
-
 import Foundation
 import ObjectMapper
 
