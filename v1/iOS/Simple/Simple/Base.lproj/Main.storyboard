@@ -106,6 +106,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="bookTitleLabel" destination="Ep7-Ni-d45" id="x3E-QV-8I4"/>
+                                                    <outlet property="imgCover" destination="uqu-Ng-HUt" id="FZe-Lc-ucv"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -131,6 +132,7 @@
                             <constraint firstAttribute="bottom" secondItem="r3p-ek-UzY" secondAttribute="bottom" id="Txc-Kk-3h6"/>
                             <constraint firstAttribute="trailing" secondItem="r3p-ek-UzY" secondAttribute="trailing" id="mpr-yD-AaB"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ubH-Gz-UCu"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="88q-Og-B1b"/>
                     <connections>

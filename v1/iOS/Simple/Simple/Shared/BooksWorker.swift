@@ -23,11 +23,28 @@ class BooksWorker {
         }
       }
     }
+    
+    func searchBooks(textSearch: String, completionHandler: @escaping ([Book]) -> Void){
+        
+        booksStore.searchBooks(textSearch: textSearch) { (books: () throws -> [Book]) -> Void in
+          do {
+            let books = try books()
+            DispatchQueue.main.async {
+              completionHandler(books)
+            }
+          } catch {
+            DispatchQueue.main.async {
+              completionHandler([])
+            }
+          }
+        }
+    }
 }
 
 protocol BooksStoreProtocol
 {
   func fetchBooks(completionHandler: @escaping (() throws -> [Book]) -> Void)
+    func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void)
 }
 
 protocol BooksStoreUtilityProtocol {}

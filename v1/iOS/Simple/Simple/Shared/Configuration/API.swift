@@ -5,6 +5,7 @@ let baseUrl = "http://192.168.70.59:8080/library-core/api/"
 struct GetBooks {
     struct ProductionServer {
         static let url = baseUrl + "books"
+        static let searchURL = baseUrl + "books/search"
     }
     
     struct APIParameterKey {

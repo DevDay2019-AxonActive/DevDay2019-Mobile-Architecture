@@ -29,5 +29,26 @@ class BooksApi: BooksStoreProtocol, BooksStoreUtilityProtocol
         }
         return []
     }
+    
+    func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void) {
+        let url = GetBooks.ProductionServer.searchURL
+        var request = URLRequest(url:NSURL(string: url)! as URL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 3600000 
+        let values = ["keyword": textSearch]
+        request.httpBody = try! JSONSerialization.data(withJSONObject: values, options: [])
+        Alamofire.request(request as URLRequestConvertible).responseJSON { (reponse) in
+                      switch reponse.result {
+                      case .success(let value):
+                          let books = self.transformFromJSON(value)
+                          completionHandler {return books}
+                          print(books as Any)
+                          
+                      case .failure(let error):
+                          print(error)
+                      }
+              }
+      }
 
 }

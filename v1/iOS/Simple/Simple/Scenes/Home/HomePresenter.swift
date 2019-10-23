@@ -22,8 +22,14 @@ class HomePresenter: HomePresentationLogic
     {
       var displayedBooks: [Home.FetchBook.ViewModel.DisplayedBook] = []
       for book in response.books {
-        let displayedBook = Home.FetchBook.ViewModel.DisplayedBook(title: "\(book.title) \(book.autor)")
-        displayedBooks.append(displayedBook)
+        if let coverStr = book.detail?[0].coverUrl {
+            let displayedBook = Home.FetchBook.ViewModel.DisplayedBook(title: "\(book.title) \(book.autor)", coverUrl: coverStr)
+            displayedBooks.append(displayedBook)
+        }else {
+
+            let displayedBook = Home.FetchBook.ViewModel.DisplayedBook(title: "\(book.title) \(book.autor)", coverUrl: "")
+            displayedBooks.append(displayedBook)
+        }
       }
       let viewModel = Home.FetchBook.ViewModel(displayedBooks: displayedBooks)
       viewController?.displayFetchedBooks(viewModel: viewModel)
