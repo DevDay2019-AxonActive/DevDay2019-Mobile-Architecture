@@ -62,15 +62,19 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
         void bindData(Book data) {
             titleTv.setText(data.getTitle());
+
             authorTv.setText(data.getAuthor());
             if (data.getDetails() != null && !data.getDetails().isEmpty()) {
                 BookDetail bookDetail = data.getDetails().get(0);
+                authorTv.setText(bookDetail.getSource());
                 briefDesTv.setText(bookDetail.getDescription());
                 Glide.with(coverIv)
                         .load(bookDetail.getCoverUrl())
                         .placeholder(R.drawable.book_cover_placeholder)
                         .thumbnail(0.1f)
                         .into(coverIv);
+            } else {
+                authorTv.setText(data.getAuthor());
             }
         }
     }

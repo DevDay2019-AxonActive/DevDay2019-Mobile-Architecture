@@ -9,6 +9,9 @@ public class BookDetail {
     @SerializedName("coverUrl")
     private String coverUrl;
 
+    @SerializedName("source")
+    private String source;
+
     public BookDetail(String description) {
         this.description = description;
     }
@@ -27,5 +30,13 @@ public class BookDetail {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
