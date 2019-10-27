@@ -20,14 +20,18 @@ class WelcomeInteractor: WelcomeBusinessLogic, WelcomeDataStore
   {
     let userID = request.userID
     let password = request.password
-    let authenticationWorker = AuthenticationWorker()
-    if authenticationWorker.login(userID: userID, password: password) {
-      authenticationWorker.saveUserID(request.userID)
-      let response = Welcome.Login.Response(success: true)
-      presenter?.presentLogin(response: response)
-    } else {
-      let response = Welcome.Login.Response(success: false)
-      presenter?.presentLogin(response: response)
+    let authenticationWorker = AuthenticationWorker(authenticationProtocol: LoginApi())
+    authenticationWorker.login(username: userID!, password: password!) { (success: Bool) in
+        if success {
+            let response = Welcome.Login.Response(success: true)
+            self.presenter?.presentLogin(response: response)
+            
+        }else{
+            let response = Welcome.Login.Response(success: false)
+            self.presenter?.presentLogin(response: response)
+            
+        }
     }
+    
   }
 }

@@ -12,14 +12,10 @@ class BooksWorker {
     {
       booksStore.fetchBooks { (books: () throws -> [Book]) -> Void in
         do {
-          let books = try books()
-          DispatchQueue.main.async {
+            let books = try books()
             completionHandler(books)
-          }
         } catch {
-          DispatchQueue.main.async {
             completionHandler([])
-          }
         }
       }
     }
@@ -29,13 +25,9 @@ class BooksWorker {
         booksStore.searchBooks(textSearch: textSearch) { (books: () throws -> [Book]) -> Void in
           do {
             let books = try books()
-            DispatchQueue.main.async {
-              completionHandler(books)
-            }
+            completionHandler(books)
           } catch {
-            DispatchQueue.main.async {
               completionHandler([])
-            }
           }
         }
     }

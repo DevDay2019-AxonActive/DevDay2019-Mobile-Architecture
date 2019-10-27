@@ -11,6 +11,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic
 {
 
   @IBOutlet weak var booksTableView: UITableView!
+    var refreshControl = UIRefreshControl()
     
   var interactor: HomeBusinessLogic?
   var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
@@ -76,9 +77,20 @@ class HomeViewController: UIViewController, HomeDisplayLogic
     booksTableView.estimatedRowHeight = 50
     booksTableView.rowHeight = UITableView.automaticDimension
     
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+     refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+     booksTableView.addSubview(refreshControl)
+    
     showGreeting()
   }
   
+    @objc func refresh() {
+       // Code to refresh table view
+        print("refresh")
+        searchController.searchBar.text = ""
+        interactor?.fetchBooks()
+        refreshControl.endRefreshing()
+    }
   // MARK: Show greeting
   
   func showGreeting()
@@ -107,6 +119,7 @@ class BookCell: UITableViewCell {
     
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var imgCover: UIImageView!
+    @IBOutlet weak var sourceLabel: UILabel!
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -119,12 +132,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if cell == nil {
           cell = BookCell(style: .value1, reuseIdentifier: "bookCell")
         }
-        cell?.bookTitleLabel.text = displayedBooks[indexPath.row].title
-        if(!displayedBooks[indexPath.row].coverUrl.isEmpty) {
-            let url = URL(string: displayedBooks[indexPath.row].coverUrl)!
+        let book = displayedBooks[indexPath.row]
+        cell?.bookTitleLabel.text = book.title
+        if(!book.coverUrl.isEmpty) {
+            let url = URL(string: book.coverUrl)!
             let image =  UIImage(named: "book")
             cell!.imgCover.kf.setImage(with: url, placeholder: image)
         }
+        cell?.sourceLabel.text = book.author
         return cell!
     }
     

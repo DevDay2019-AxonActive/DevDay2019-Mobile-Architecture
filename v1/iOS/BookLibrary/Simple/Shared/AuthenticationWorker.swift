@@ -2,14 +2,23 @@ import Foundation
 
 class AuthenticationWorker
 {
-  let users = ["ray": "123"]
   
-  func login(userID: String?, password: String?) -> Bool
-  {
-    guard let userID = userID, let password = password else { return false }
-    return users[userID] == password
-  }
+    var authenticationProtocol:AuthenticationProtocol?
+    
+    init() {
+        self.authenticationProtocol = nil
+    }
+    
+    init(authenticationProtocol: AuthenticationProtocol) {
+        self.authenticationProtocol = authenticationProtocol
+    }
   
+    func login(username: String, password: String, completionHandler: @escaping (Bool)-> Void) {
+        authenticationProtocol?.login(username: username, password: password) { (success) in
+            completionHandler(success)
+        }
+    }
+    
   func saveUserID(_ userID: String?)
   {
     UserDefaults.standard.set(userID, forKey: "userID")
@@ -21,4 +30,8 @@ class AuthenticationWorker
   }
 }
 
+
+protocol AuthenticationProtocol {
+    func login(username: String, password: String, completionHandler: @escaping (Bool)-> Void)
+}
 

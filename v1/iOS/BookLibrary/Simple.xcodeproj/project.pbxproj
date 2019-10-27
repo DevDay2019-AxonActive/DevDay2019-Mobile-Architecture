@@ -39,6 +39,7 @@
 		71CCE17820E0AF0400782DF4 /* AuthenticationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCE17720E0AF0400782DF4 /* AuthenticationWorker.swift */; };
 		7F0E059AD2D4C73CE8EBB146 /* Pods_SimpleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A3F813737FC26CFA8F64A5 /* Pods_SimpleTests.framework */; };
 		9629A1583EDD2F7B20734088 /* Pods_Simple_SimpleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC6DFE79F07D31C10851F0C /* Pods_Simple_SimpleUITests.framework */; };
+		9964E19E235FFF3300DE2661 /* LoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964E19D235FFF3300DE2661 /* LoginApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		71CCE16F20E0A40700782DF4 /* HomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorker.swift; sourceTree = "<group>"; };
 		71CCE17720E0AF0400782DF4 /* AuthenticationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWorker.swift; sourceTree = "<group>"; };
 		9884556D46344040938E10D3 /* Pods-Simple-SimpleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-SimpleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Simple-SimpleUITests/Pods-Simple-SimpleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9964E19D235FFF3300DE2661 /* LoginApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApi.swift; sourceTree = "<group>"; };
 		EBC6DFE79F07D31C10851F0C /* Pods_Simple_SimpleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_SimpleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				2DD6625423547F4B000D66D0 /* BookApi.swift */,
+				9964E19D235FFF3300DE2661 /* LoginApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				71CCE17120E0A40700782DF4 /* HomeModels.swift in Sources */,
 				71CCE16620E0A3F600782DF4 /* WelcomePresenter.swift in Sources */,
 				71CCE17220E0A40700782DF4 /* HomePresenter.swift in Sources */,
+				9964E19E235FFF3300DE2661 /* LoginApi.swift in Sources */,
 				71CCE16920E0A3F600782DF4 /* WelcomeWorker.swift in Sources */,
 				2DD6625E23549456000D66D0 /* Response.swift in Sources */,
 				71CCE17020E0A40700782DF4 /* HomeInteractor.swift in Sources */,

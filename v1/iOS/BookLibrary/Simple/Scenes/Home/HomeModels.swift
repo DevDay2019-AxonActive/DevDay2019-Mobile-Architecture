@@ -32,8 +32,10 @@ enum Home
       {
         struct DisplayedBook
          {
-            var title: String?
+            var title: String = ""
             var coverUrl: String = ""
+            var author: String = ""
+            
          }
          var displayedBooks: [DisplayedBook]
         

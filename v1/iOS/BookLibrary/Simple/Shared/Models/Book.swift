@@ -5,7 +5,7 @@ class Book:Mappable, CustomStringConvertible, Equatable {
     
     var id : Int = 0
     var title : String = ""
-    var autor : String = ""
+    var author : String = ""
     var detail : [BookDetail]?
     
     class BookDetail:Mappable  {
@@ -23,13 +23,15 @@ class Book:Mappable, CustomStringConvertible, Equatable {
     static func == (lhs: Book, rhs: Book) -> Bool {
         return lhs.id == rhs.id
         && lhs.title == rhs.title
-        && lhs.autor == rhs.autor
+        && lhs.author == rhs.author
     }
     
     var description: String {
            var result = "id: \(String(describing: id))\n"
            result += "title: \(String(describing: title))\n"
-        result += "coverUrl: \(String(describing: detail?[0].coverUrl))\n"
+        if  (detail != nil) && (detail!.count > 0) {
+            result += "coverUrl: \(String(describing: detail?[0].coverUrl))\n"
+        }
         
            return result
        }
@@ -46,7 +48,7 @@ class Book:Mappable, CustomStringConvertible, Equatable {
     func mapping(map: Map) {
         id    <- map["id"]
         title <- map["name"]
-        autor <- map["author"]
+        author <- map["author"]
         detail <- map["details"]
     }
 }
