@@ -50,6 +50,7 @@ class HiomeViewControllerTests: XCTestCase
         
         var fetchBooksCalled = false
         var filterContentForSearchTextCalled = false
+        var searchBooks = false
         
         // MARK: Spied methods
         
@@ -66,7 +67,7 @@ class HiomeViewControllerTests: XCTestCase
         }
         
         func searchBooks(_ searchText: String) {
-            
+            searchBooks = true
         }
      }
      

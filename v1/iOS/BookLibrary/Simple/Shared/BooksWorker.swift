@@ -36,7 +36,7 @@ class BooksWorker {
 protocol BooksStoreProtocol
 {
   func fetchBooks(completionHandler: @escaping (() throws -> [Book]) -> Void)
-    func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void)
+  func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void)
 }
 
 protocol BooksStoreUtilityProtocol {}

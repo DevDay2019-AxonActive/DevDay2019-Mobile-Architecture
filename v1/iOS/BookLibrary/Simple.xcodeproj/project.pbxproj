@@ -18,6 +18,9 @@
 		2DD6626D235EB0A4000D66D0 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD66269235EB0A4000D66D0 /* Seeds.swift */; };
 		2DD66270235EB0BA000D66D0 /* BooksWorkerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6626F235EB0BA000D66D0 /* BooksWorkerTest.swift */; };
 		575EC82F9251BBB085026A4B /* Pods_Simple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A8A04C6AB7C946CADDBA9B /* Pods_Simple.framework */; };
+		63E6C02423659EDF009801CD /* WelcomeInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02323659EDF009801CD /* WelcomeInteractorTest.swift */; };
+		63E6C02623659F26009801CD /* WelcomeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02523659F26009801CD /* WelcomeControllerTest.swift */; };
+		63E6C02823659F3E009801CD /* WelcomePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02723659F3E009801CD /* WelcomePresenterTest.swift */; };
 		71CCE12E20E0A36100782DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCE12D20E0A36100782DF4 /* AppDelegate.swift */; };
 		71CCE13320E0A36100782DF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71CCE13120E0A36100782DF4 /* Main.storyboard */; };
 		71CCE13520E0A36300782DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71CCE13420E0A36300782DF4 /* Assets.xcassets */; };
@@ -77,6 +80,9 @@
 		49A3F813737FC26CFA8F64A5 /* Pods_SimpleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA92AC462524AA0B701D3B6 /* Pods-SimpleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleTests/Pods-SimpleTests.release.xcconfig"; sourceTree = "<group>"; };
 		6258A561924150B4BB227D6D /* Pods-Simple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple.debug.xcconfig"; path = "Target Support Files/Pods-Simple/Pods-Simple.debug.xcconfig"; sourceTree = "<group>"; };
+		63E6C02323659EDF009801CD /* WelcomeInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeInteractorTest.swift; sourceTree = "<group>"; };
+		63E6C02523659F26009801CD /* WelcomeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeControllerTest.swift; sourceTree = "<group>"; };
+		63E6C02723659F3E009801CD /* WelcomePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenterTest.swift; sourceTree = "<group>"; };
 		71CCE12A20E0A36100782DF4 /* Simple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CCE12D20E0A36100782DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71CCE13220E0A36100782DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 		2DD66264235EB0A4000D66D0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				63E6C02223659E9D009801CD /* Welcome */,
 				2DD66265235EB0A4000D66D0 /* Home */,
 			);
 			path = Scenes;
@@ -195,6 +202,16 @@
 				49A3F813737FC26CFA8F64A5 /* Pods_SimpleTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63E6C02223659E9D009801CD /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				63E6C02323659EDF009801CD /* WelcomeInteractorTest.swift */,
+				63E6C02523659F26009801CD /* WelcomeControllerTest.swift */,
+				63E6C02723659F3E009801CD /* WelcomePresenterTest.swift */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		686CF10E671CAFF6983E92BC /* Pods */ = {
@@ -585,9 +602,12 @@
 			files = (
 				71CCE14320E0A36300782DF4 /* SimpleTests.swift in Sources */,
 				2DD6626B235EB0A4000D66D0 /* HomeViewControllerTests.swift in Sources */,
+				63E6C02423659EDF009801CD /* WelcomeInteractorTest.swift in Sources */,
 				2DD66270235EB0BA000D66D0 /* BooksWorkerTest.swift in Sources */,
+				63E6C02823659F3E009801CD /* WelcomePresenterTest.swift in Sources */,
 				2DD6626A235EB0A4000D66D0 /* HomePresenterTest.swift in Sources */,
 				2DD6626C235EB0A4000D66D0 /* HomeInteractorTest.swift in Sources */,
+				63E6C02623659F26009801CD /* WelcomeControllerTest.swift in Sources */,
 				2DD6626D235EB0A4000D66D0 /* Seeds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

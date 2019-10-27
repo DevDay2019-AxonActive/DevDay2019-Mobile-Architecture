@@ -13,15 +13,9 @@ target 'Simple' do
   end
 
   target 'SimpleUITests' do
+    inherit! :search_paths
     # Pods for testing
   end
-
   pod 'Alamofire'
-  pod 'AlamofireImage'
-  pod 'RealmSwift'
-  pod 'AlamofireObjectMapper'
-  pod 'ObjectMapper'
-  pod 'Kingfisher'
-  pod 'MBProgressHUD'
-
+  pod 'SwiftyJSON'
 end

@@ -12,7 +12,7 @@ class HomePresenterTests: XCTestCase
   override func setUp()
   {
     super.setUp()
-    setupListOrdersPresenter()
+    setupHomePresenter()
   }
   
   override func tearDown()
@@ -22,7 +22,7 @@ class HomePresenterTests: XCTestCase
   
   // MARK: - Test setup
   
-  func setupListOrdersPresenter()
+  func setupHomePresenter()
   {
     sut = HomePresenter()
   }
@@ -41,7 +41,7 @@ class HomePresenterTests: XCTestCase
     
     var viewModel: Home.FetchBook.ViewModel!
     
-    // MARK: Argument expectations
+    // MARK: Spied methods
     
     func displayShowGreeting(viewModel: Home.ShowGreeting.ViewModel) {
         displayShowGreetingCalled = true

@@ -13,6 +13,7 @@ class WelcomeInteractor: WelcomeBusinessLogic, WelcomeDataStore
 {
   var presenter: WelcomePresentationLogic?
   var worker: WelcomeWorker?
+  var authenticationWorker = AuthenticationWorker(authentication: LoginApi())
   
   // MARK: Login
   
@@ -20,7 +21,6 @@ class WelcomeInteractor: WelcomeBusinessLogic, WelcomeDataStore
   {
     let userID = request.userID
     let password = request.password
-    let authenticationWorker = AuthenticationWorker(authenticationProtocol: LoginApi())
     authenticationWorker.login(username: userID!, password: password!) { (success: Bool) in
         if success {
             let response = Welcome.Login.Response(success: true)

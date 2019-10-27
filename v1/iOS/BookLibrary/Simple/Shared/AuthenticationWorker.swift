@@ -3,18 +3,18 @@ import Foundation
 class AuthenticationWorker
 {
   
-    var authenticationProtocol:AuthenticationProtocol?
+    var authentication:AuthenticationProtocol?
     
     init() {
-        self.authenticationProtocol = nil
+        self.authentication = nil
     }
     
-    init(authenticationProtocol: AuthenticationProtocol) {
-        self.authenticationProtocol = authenticationProtocol
+    init(authentication: AuthenticationProtocol) {
+        self.authentication = authentication
     }
   
     func login(username: String, password: String, completionHandler: @escaping (Bool)-> Void) {
-        authenticationProtocol?.login(username: username, password: password) { (success) in
+        authentication?.login(username: username, password: password) { (success) in
             completionHandler(success)
         }
     }
