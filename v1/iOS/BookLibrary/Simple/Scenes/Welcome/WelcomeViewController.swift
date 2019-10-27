@@ -65,7 +65,7 @@ class WelcomeViewController: UIViewController, WelcomeDisplayLogic
   @IBOutlet weak var userIDTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   
-  @IBAction func loginButtonTapped(_ sender: UIButton)
+  @IBAction func loginButtonTapped(_ sender: Any)
   {
     login()
   }

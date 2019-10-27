@@ -21,6 +21,7 @@
 		63E6C02423659EDF009801CD /* WelcomeInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02323659EDF009801CD /* WelcomeInteractorTest.swift */; };
 		63E6C02623659F26009801CD /* WelcomeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02523659F26009801CD /* WelcomeControllerTest.swift */; };
 		63E6C02823659F3E009801CD /* WelcomePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C02723659F3E009801CD /* WelcomePresenterTest.swift */; };
+		63E6C02A2365BF37009801CD /* AuthenticationWorkerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6C0292365BF37009801CD /* AuthenticationWorkerTest.swift */; };
 		71CCE12E20E0A36100782DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCE12D20E0A36100782DF4 /* AppDelegate.swift */; };
 		71CCE13320E0A36100782DF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71CCE13120E0A36100782DF4 /* Main.storyboard */; };
 		71CCE13520E0A36300782DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71CCE13420E0A36300782DF4 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		63E6C02323659EDF009801CD /* WelcomeInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeInteractorTest.swift; sourceTree = "<group>"; };
 		63E6C02523659F26009801CD /* WelcomeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeControllerTest.swift; sourceTree = "<group>"; };
 		63E6C02723659F3E009801CD /* WelcomePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenterTest.swift; sourceTree = "<group>"; };
+		63E6C0292365BF37009801CD /* AuthenticationWorkerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWorkerTest.swift; sourceTree = "<group>"; };
 		71CCE12A20E0A36100782DF4 /* Simple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CCE12D20E0A36100782DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71CCE13220E0A36100782DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				2DD6626F235EB0BA000D66D0 /* BooksWorkerTest.swift */,
+				63E6C0292365BF37009801CD /* AuthenticationWorkerTest.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				71CCE14320E0A36300782DF4 /* SimpleTests.swift in Sources */,
 				2DD6626B235EB0A4000D66D0 /* HomeViewControllerTests.swift in Sources */,
 				63E6C02423659EDF009801CD /* WelcomeInteractorTest.swift in Sources */,
+				63E6C02A2365BF37009801CD /* AuthenticationWorkerTest.swift in Sources */,
 				2DD66270235EB0BA000D66D0 /* BooksWorkerTest.swift in Sources */,
 				63E6C02823659F3E009801CD /* WelcomePresenterTest.swift in Sources */,
 				2DD6626A235EB0A4000D66D0 /* HomePresenterTest.swift in Sources */,
