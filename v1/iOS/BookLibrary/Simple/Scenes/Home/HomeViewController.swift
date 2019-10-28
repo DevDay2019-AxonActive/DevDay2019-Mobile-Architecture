@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic
     
     var displayedBooks: [Home.FetchBook.ViewModel.DisplayedBook] = []
     let searchController = UISearchController(searchResultsController: nil)
+    
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
