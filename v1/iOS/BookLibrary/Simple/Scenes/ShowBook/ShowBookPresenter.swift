@@ -2,7 +2,7 @@ import UIKit
 
 protocol ShowBookPresentationLogic
 {
-  func presentSomething(response: ShowBook.Something.Response)
+  func presentBook(response: ShowBook.GetBook.Response)
 }
 
 class ShowBookPresenter: ShowBookPresentationLogic
@@ -11,9 +11,9 @@ class ShowBookPresenter: ShowBookPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: ShowBook.Something.Response)
+  func presentBook(response: ShowBook.GetBook.Response)
   {
-    let viewModel = ShowBook.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    let viewModel = ShowBook.GetBook.ViewModel(book: response.book)
+    viewController?.displayBook(viewModel: viewModel)
   }
 }

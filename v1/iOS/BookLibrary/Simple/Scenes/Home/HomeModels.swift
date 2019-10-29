@@ -37,6 +37,7 @@ enum Home
             var author: String = ""
             
          }
+        
          var displayedBooks: [DisplayedBook]
         
         }

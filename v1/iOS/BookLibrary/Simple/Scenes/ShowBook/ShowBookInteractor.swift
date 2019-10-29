@@ -2,7 +2,7 @@ import UIKit
 
 protocol ShowBookBusinessLogic
 {
-  func doSomething(request: ShowBook.Something.Request)
+  func doSomething(request: ShowBook.GetBook.Request)
 }
 
 protocol ShowBookDataStore
@@ -18,12 +18,12 @@ class ShowBookInteractor: ShowBookBusinessLogic, ShowBookDataStore
   
   // MARK: Do something
   
-  func doSomething(request: ShowBook.Something.Request)
+  func doSomething(request: ShowBook.GetBook.Request)
   {
     worker = ShowBookWorker()
     worker?.doSomeWork()
     
-    let response = ShowBook.Something.Response()
-    presenter?.presentSomething(response: response)
+    let response = ShowBook.GetBook.Response(book: book)
+    presenter?.presentBook(response: response)
   }
 }
