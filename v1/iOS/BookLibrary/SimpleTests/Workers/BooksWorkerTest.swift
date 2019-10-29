@@ -85,5 +85,26 @@ class BooksWorkerTests: XCTestCase
             XCTAssert(BooksWorkerTests.testBooks.contains(book), "Fetched books should match the books in the data source")
         }
     }
-    
+   
+    func testSearchBooksShouldReturnListOfBooks()
+    {
+        // Given
+        let booksApiSpy = sut.booksStore as! BooksApiSpy
+        
+        // When
+        var searchBooks = [Book]()
+        let expect = expectation(description: "Wait for searchBooks() to return")
+        sut.searchBooks(textSearch: "java") {(books) in
+            searchBooks = books
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 1.1)
+        
+        // Then
+        XCTAssert(booksApiSpy.searchBooksCalled, "Calling searchBooks() should ask the api for list of books")
+        XCTAssertEqual(searchBooks.count, BooksWorkerTests.testBooks.count, "Calling searchBooks() should return list of books")
+        for book in searchBooks {
+            XCTAssert(BooksWorkerTests.testBooks.contains(book), "Searched books should match the books in the data source")
+        }
+    }
 }

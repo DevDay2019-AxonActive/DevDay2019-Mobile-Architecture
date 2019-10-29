@@ -8,6 +8,7 @@ PODS:
   - Kingfisher (5.8.3):
     - Kingfisher/Core (= 5.8.3)
   - Kingfisher/Core (5.8.3)
+  - MBProgressHUD (1.1.0)
   - ObjectMapper (3.5.1)
   - Realm (3.19.0):
     - Realm/Headers (= 3.19.0)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - AlamofireImage
   - AlamofireObjectMapper
   - Kingfisher
+  - MBProgressHUD
   - ObjectMapper
   - RealmSwift
 
@@ -29,6 +31,7 @@ SPEC REPOS:
     - AlamofireImage
     - AlamofireObjectMapper
     - Kingfisher
+    - MBProgressHUD
     - ObjectMapper
     - Realm
     - RealmSwift
@@ -38,10 +41,11 @@ SPEC CHECKSUMS:
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   Realm: 995d585bcf699aaff226715886c849a29dd3d07f
   RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
 
-PODFILE CHECKSUM: 24aa55b9db3d6e9fe81f51d4c00ee31fc873c800
+PODFILE CHECKSUM: 4eba647dd7380023f2d523715a32a77b7dc2862d
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

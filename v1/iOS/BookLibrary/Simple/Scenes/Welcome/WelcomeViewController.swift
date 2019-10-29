@@ -1,4 +1,5 @@
 import UIKit
+import MBProgressHUD
 
 protocol WelcomeDisplayLogic: class
 {
@@ -64,13 +65,26 @@ class WelcomeViewController: UIViewController, WelcomeDisplayLogic
   @IBOutlet weak var userIDTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   
-  @IBAction func loginButtonTapped(_ sender: UIButton)
+  @IBAction func loginButtonTapped(_ sender: Any)
   {
     login()
   }
   
+    func showHUD() {
+        DispatchQueue.main.async {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+    }
+    
+    func hideHUD() {
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
   func login()
   {
+    self.showHUD()
     let userID = userIDTextField.text
     let password = passwordTextField.text
     let request = Welcome.Login.Request(userID: userID, password: password)
@@ -79,6 +93,7 @@ class WelcomeViewController: UIViewController, WelcomeDisplayLogic
   
   func displayLogin(viewModel: Welcome.Login.ViewModel)
   {
+    self.hideHUD()
     if viewModel.success {
       performSegue(withIdentifier: "Home", sender: nil)
     } else {

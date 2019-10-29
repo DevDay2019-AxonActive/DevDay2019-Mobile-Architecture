@@ -50,5 +50,4 @@ class BooksApi: BooksStoreProtocol, BooksStoreUtilityProtocol
                       }
               }
       }
-
 }

@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 protocol HomeDisplayLogic: class
 {
@@ -10,6 +11,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic
 {
 
   @IBOutlet weak var booksTableView: UITableView!
+    var refreshControl = UIRefreshControl()
     
   var interactor: HomeBusinessLogic?
   var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
@@ -76,9 +78,20 @@ class HomeViewController: UIViewController, HomeDisplayLogic
     booksTableView.estimatedRowHeight = 50
     booksTableView.rowHeight = UITableView.automaticDimension
     
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+     refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+     booksTableView.addSubview(refreshControl)
+    
     showGreeting()
   }
   
+    @objc func refresh() {
+       // Code to refresh table view
+        print("refresh")
+        searchController.searchBar.text = ""
+        interactor?.fetchBooks()
+        refreshControl.endRefreshing()
+    }
   // MARK: Show greeting
   
   func showGreeting()
@@ -107,6 +120,7 @@ class BookCell: UITableViewCell {
     
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var imgCover: UIImageView!
+    @IBOutlet weak var sourceLabel: UILabel!
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -119,28 +133,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if cell == nil {
           cell = BookCell(style: .value1, reuseIdentifier: "bookCell")
         }
-        cell?.bookTitleLabel.text = displayedBooks[indexPath.row].title
-        
-        let coverStr = displayedBooks[indexPath.row].coverUrl!
-        
-        
-        let url = NSURL(string: coverStr)!
-        let request = NSMutableURLRequest(url: url as URL)
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                print("error: \(error!.localizedDescription): \(String(describing: error))")
-            }
-            else if data != nil {
-                DispatchQueue.main.async() {
-                    cell?.imgCover.image  = UIImage(data: data!)
-                }
-            }
-
+        let book = displayedBooks[indexPath.row]
+        cell?.bookTitleLabel.text = book.title
+        if(!book.coverUrl.isEmpty) {
+            let url = URL(string: book.coverUrl)!
+            let image =  UIImage(named: "book")
+            cell!.imgCover.kf.setImage(with: url, placeholder: image)
         }
-        task.resume()
-        
+        cell?.sourceLabel.text = book.author
         return cell!
     }
     

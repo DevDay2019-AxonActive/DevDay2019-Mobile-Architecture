@@ -19,12 +19,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e59-Am-GoF">
                                 <rect key="frame" x="20" y="64" width="335" height="138"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ray" borderStyle="roundedRect" placeholder="Enter user ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmI-1I-tFH">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="simple" borderStyle="roundedRect" placeholder="Enter user ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmI-1I-tFH">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zat-YK-fhB">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="simple" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zat-YK-fhB">
                                         <rect key="frame" x="0.0" y="54" width="335" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -80,31 +80,44 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="uqu-Ng-HUt">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="uqu-Ng-HUt">
                                                             <rect key="frame" x="10" y="10" width="100" height="120"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="IcD-gr-ceO"/>
                                                                 <constraint firstAttribute="height" constant="120" id="LLl-e4-wRz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ep7-Ni-d45">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ep7-Ni-d45">
                                                             <rect key="frame" x="120" y="10" width="245" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLR-xh-Nop">
+                                                            <rect key="frame" x="120" y="40.5" width="245" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" placeholder="YES" id="UvD-4e-Gg0"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="uqu-Ng-HUt" firstAttribute="leading" secondItem="yCa-fj-wrd" secondAttribute="leading" constant="10" id="5tD-kU-bv3"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ep7-Ni-d45" secondAttribute="trailing" constant="10" id="82o-yG-sYT"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ep7-Ni-d45" secondAttribute="bottom" priority="750" constant="10" id="Ddo-jY-Mxc"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BLR-xh-Nop" secondAttribute="bottom" priority="750" constant="10" id="DLa-pT-g2I"/>
+                                                        <constraint firstItem="BLR-xh-Nop" firstAttribute="leading" secondItem="uqu-Ng-HUt" secondAttribute="trailing" constant="10" id="TM5-vk-9FS"/>
                                                         <constraint firstItem="uqu-Ng-HUt" firstAttribute="top" secondItem="yCa-fj-wrd" secondAttribute="top" constant="10" id="dJa-LL-8Mk"/>
                                                         <constraint firstItem="Ep7-Ni-d45" firstAttribute="leading" secondItem="uqu-Ng-HUt" secondAttribute="trailing" constant="10" id="e0k-3K-bep"/>
+                                                        <constraint firstItem="BLR-xh-Nop" firstAttribute="top" secondItem="Ep7-Ni-d45" secondAttribute="bottom" constant="10" id="fqq-1r-pIa"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uqu-Ng-HUt" secondAttribute="bottom" constant="10" id="h8x-dy-XQU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="BLR-xh-Nop" secondAttribute="trailing" constant="10" id="iq5-YJ-yau"/>
                                                         <constraint firstItem="Ep7-Ni-d45" firstAttribute="top" secondItem="yCa-fj-wrd" secondAttribute="top" constant="10" id="wq8-0S-eep"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="SourceLabel" destination="BLR-xh-Nop" id="Had-Ax-VgZ"/>
                                                     <outlet property="bookTitleLabel" destination="Ep7-Ni-d45" id="x3E-QV-8I4"/>
                                                     <outlet property="imgCover" destination="uqu-Ng-HUt" id="FZe-Lc-ucv"/>
                                                     <segue destination="LB3-1i-si5" kind="show" identifier="ShowDetail" id="xuV-OT-Tjn"/>
@@ -180,6 +193,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book.jpeg" width="1200" height="900"/>
+        <image name="book" width="1200" height="900"/>
     </resources>
 </document>

@@ -1,11 +1,12 @@
 import Foundation
 
-let baseUrl = "http://192.168.70.59:8080/library-core/api/"
+let baseUrl = "http://192.168.70.59:8080"
 
 struct GetBooks {
     struct ProductionServer {
-        static let url = baseUrl + "books"
-        static let searchURL = baseUrl + "books/search"
+        static let url = baseUrl + "/library-core/api/books"
+        static let searchURL = baseUrl + "/library-core/api/books/search"
+        static let loginURL =  baseUrl + "/user/login"
     }
     
     struct APIParameterKey {

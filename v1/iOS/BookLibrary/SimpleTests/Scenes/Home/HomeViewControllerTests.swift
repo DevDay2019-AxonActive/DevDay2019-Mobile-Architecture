@@ -1,7 +1,7 @@
 @testable import Simple
 import XCTest
 
-class HiomeViewControllerTests: XCTestCase
+class HomeViewControllerTests: XCTestCase
 {
     // MARK: - Subject under test
     
@@ -15,7 +15,7 @@ class HiomeViewControllerTests: XCTestCase
     {
       super.setUp()
       window = UIWindow()
-      setupListOrdersViewController()
+      setupHomeViewController()
     }
     
     override func tearDown()
@@ -26,7 +26,7 @@ class HiomeViewControllerTests: XCTestCase
     
     // MARK: - Test setup
     
-    func setupListOrdersViewController()
+    func setupHomeViewController()
     {
       let bundle = Bundle.main
       let storyboard = UIStoryboard(name: "Main", bundle: bundle)
@@ -50,6 +50,7 @@ class HiomeViewControllerTests: XCTestCase
         
         var fetchBooksCalled = false
         var filterContentForSearchTextCalled = false
+        var searchBooks = false
         
         // MARK: Spied methods
         
@@ -66,7 +67,7 @@ class HiomeViewControllerTests: XCTestCase
         }
         
         func searchBooks(_ searchText: String) {
-            
+            searchBooks = true
         }
      }
      
@@ -131,4 +132,19 @@ class HiomeViewControllerTests: XCTestCase
       // Then
       XCTAssertEqual(cell.bookTitleLabel?.text, "abc123")
     }
+    
+    func testShouldSearchBooks_WhenUserTapOnSearchKey()
+    {
+      // Given
+      let homeBusinessLogicSpy = HomeBusinessLogicSpy()
+      sut.interactor = homeBusinessLogicSpy
+      loadView()
+      
+      // When
+
+      
+      // Then
+//      XCTAssert(homeBusinessLogicSpy.filterContentForSearchTextCalled, "Should search books when user tap on search key")
+    }
+    
 }
