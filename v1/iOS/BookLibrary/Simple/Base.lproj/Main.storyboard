@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="85j-fY-TQ5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="85j-fY-TQ5">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,6 +107,7 @@
                                                 <connections>
                                                     <outlet property="bookTitleLabel" destination="Ep7-Ni-d45" id="x3E-QV-8I4"/>
                                                     <outlet property="imgCover" destination="uqu-Ng-HUt" id="FZe-Lc-ucv"/>
+                                                    <segue destination="LB3-1i-si5" kind="show" identifier="ShowDetail" id="xuV-OT-Tjn"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -142,6 +143,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XvX-iA-pgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2016.8" y="17.541229385307346"/>
+        </scene>
+        <!--Show Book View Controller-->
+        <scene sceneID="jIA-Rb-VCT">
+            <objects>
+                <viewController id="LB3-1i-si5" customClass="ShowBookViewController" customModule="Simple" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wMa-2u-25t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bOe-kV-xiF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="beL-Wt-07R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J3S-ng-f3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2847" y="18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i5F-32-WVu">

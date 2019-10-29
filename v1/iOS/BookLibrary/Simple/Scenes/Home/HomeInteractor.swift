@@ -10,15 +10,17 @@ protocol HomeBusinessLogic
 
 protocol HomeDataStore
 {
+    var books: [Book]! { get }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore
 {
+    
   var presenter: HomePresentationLogic?
   var worker: HomeWorker?
   var booksWorker = BooksWorker(booksStore: BooksApi())
     
-  var books: [Book] = []
+  var books: [Book]! = []
   
   // MARK: Show greeting
   
