@@ -15,7 +15,14 @@ enum ShowBook
     }
     struct ViewModel
     {
-        var book: Book?
+        struct DisplayedBookDetail {
+            var title: String = ""
+            var coverUrl: String = ""
+            var author: String = ""
+            var description: String = ""
+        }
+        
+        var displayedBookDetail: DisplayedBookDetail?
     }
   }
 }

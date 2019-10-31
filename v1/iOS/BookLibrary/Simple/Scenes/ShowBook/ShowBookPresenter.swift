@@ -13,7 +13,17 @@ class ShowBookPresenter: ShowBookPresentationLogic
   
   func presentBook(response: ShowBook.GetBook.Response)
   {
-    let viewModel = ShowBook.GetBook.ViewModel(book: response.book)
-    viewController?.displayBook(viewModel: viewModel)
+    let book = response.book!
+    
+    if let coverStr = book.detail?[0].coverUrl {
+        let displayedBook = ShowBook.GetBook.ViewModel.DisplayedBookDetail(
+            title: book.title,
+            coverUrl: coverStr,
+            author: book.author,
+            description: book.description
+        )
+        let viewModel = ShowBook.GetBook.ViewModel(displayedBookDetail: displayedBook)
+        viewController?.displayBook(viewModel: viewModel)
+    }
   }
 }
