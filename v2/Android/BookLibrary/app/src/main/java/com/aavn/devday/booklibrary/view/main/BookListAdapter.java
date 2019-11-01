@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aavn.devday.booklibrary.R;
@@ -20,6 +21,7 @@ import java.util.List;
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
 
     private List<Book> items = new ArrayList<>();
+    private BookSelectListener listener;
 
     @NonNull
     @Override
@@ -31,7 +33,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book data = items.get(position);
-        holder.bindData(data);
+        holder.bindData(data, listener);
     }
 
     @Override
@@ -45,8 +47,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         notifyDataSetChanged();
     }
 
+    void setListener(BookSelectListener listener) {
+        this.listener = listener;
+    }
+
     static class BookViewHolder extends RecyclerView.ViewHolder {
 
+        CardView cardItem;
         TextView titleTv;
         TextView briefDesTv;
         TextView authorTv;
@@ -54,13 +61,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
         BookViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardItem = itemView.findViewById(R.id.card_item);
             titleTv = itemView.findViewById(R.id.tv_item_book_title);
             briefDesTv = itemView.findViewById(R.id.tv_item_book_brief_description);
             authorTv = itemView.findViewById(R.id.tv_item_book_author);
             coverIv = itemView.findViewById(R.id.iv_book_cover);
+
         }
 
-        void bindData(Book data) {
+        void bindData(Book data, BookSelectListener listener) {
             titleTv.setText(data.getTitle());
 
             authorTv.setText(data.getAuthor());
@@ -76,6 +85,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             } else {
                 authorTv.setText(data.getAuthor());
             }
+            cardItem.setOnClickListener(v -> listener.onItemSelected(data));
         }
     }
 

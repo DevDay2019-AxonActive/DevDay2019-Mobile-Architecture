@@ -1,19 +1,44 @@
 package com.aavn.devday.booklibrary.data.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
+import com.google.gson.annotations.Expose;
 
 public class BookDetail {
-    @SerializedName("description")
-    private String description;
 
+    @SerializedName("comments")
+    @Expose
+    private List<Comment> comments = null;
     @SerializedName("coverUrl")
+    @Expose
     private String coverUrl;
-
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("ratings")
+    @Expose
+    private List<Rating> ratings = null;
     @SerializedName("source")
+    @Expose
     private String source;
 
-    public BookDetail(String description) {
-        this.description = description;
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
     public String getDescription() {
@@ -24,12 +49,20 @@ public class BookDetail {
         this.description = description;
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 
     public String getSource() {
