@@ -1,5 +1,7 @@
 package com.aavn.devday.booklibrary.view.main;
 
+import android.os.Build;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +78,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             if (data.getDetails() != null && !data.getDetails().isEmpty()) {
                 BookDetail bookDetail = data.getDetails().get(0);
                 authorTv.setText(bookDetail.getSource());
-                briefDesTv.setText(bookDetail.getDescription());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription(), Html.FROM_HTML_MODE_COMPACT));
+                } else {
+                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription()));
+                }
                 Glide.with(coverIv)
                         .load(bookDetail.getCoverUrl())
                         .placeholder(R.drawable.book_cover_placeholder)
