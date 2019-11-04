@@ -31,12 +31,12 @@ class BooksApi: BooksStoreProtocol, BooksStoreUtilityProtocol
     }
     
     func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void) {
-        let url = GetBooks.ProductionServer.searchURL
+        let url = SearchBook.ProductionServer.url
         var request = URLRequest(url:NSURL(string: url)! as URL)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = ApiMethod.POST.rawValue
+        request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         request.timeoutInterval = 3600000 
-        let values = ["keyword": textSearch]
+        let values = [SearchBook.APIParameterKey.keyword: textSearch]
         request.httpBody = try! JSONSerialization.data(withJSONObject: values, options: [])
         Alamofire.request(request as URLRequestConvertible).responseJSON { (reponse) in
                       switch reponse.result {

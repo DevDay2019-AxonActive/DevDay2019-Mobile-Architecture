@@ -71,7 +71,7 @@ class ShowBookViewController: UIViewController, ShowBookDisplayLogic
   
   //@IBOutlet weak var nameTextField: UITextField!
     
-    var book: Book?
+    var book: ShowBook.GetBook.ViewModel.DisplayedBookDetail?
   
   func showInfo()
   {
@@ -80,7 +80,7 @@ class ShowBookViewController: UIViewController, ShowBookDisplayLogic
   }
   
  func displayBook(viewModel: ShowBook.GetBook.ViewModel) {
-    book = viewModel.book
+    book = viewModel.displayedBookDetail
     tblBookInfo.reloadData()
     //show info
   }
@@ -94,6 +94,28 @@ class InfoCell: UITableViewCell {
     @IBOutlet weak var lblSource: UILabel!
     @IBOutlet weak var lblRating: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var ratingView: FloatRatingView!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        ratingView.delegate = self
+        ratingView.contentMode = UIView.ContentMode.scaleAspectFit
+        ratingView.type = .floatRatings
+    }
+}
+
+extension InfoCell: FloatRatingViewDelegate {
+
+    // MARK: FloatRatingViewDelegate
+    
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double) {
+//        liveLabel.text = String(format: "%.2f", self.floatRatingView.rating)
+    }
+    
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Double) {
+//        updatedLabel.text = String(format: "%.2f", self.floatRatingView.rating)
+    }
+    
 }
 
 class CommentCell: UITableViewCell {
@@ -112,9 +134,17 @@ extension ShowBookViewController: UITableViewDataSource, UITableViewDelegate {
             if cell == nil {
               cell = InfoCell(style: .value1, reuseIdentifier: "infoCell")
             }
+            
+            
             cell?.lblName.text = book?.title
             cell?.lblSource.text = book?.author
-            cell?.lblDescription.text = "\(String(describing: book?.description)) \(book?.title) \(book?.title)"
+            cell?.lblDescription.text = "\(String(describing: book?.description)) \(String(describing: book?.title)) \(String(describing: book?.title))"
+            
+            if(!(book?.coverUrl.isEmpty ?? true)) {
+                let url = URL(string: book!.coverUrl)!
+                let image =  UIImage(named: "book")
+                cell!.imgCover.kf.setImage(with: url, placeholder: image)
+            }
             return cell!
         } else {
              var cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentCell

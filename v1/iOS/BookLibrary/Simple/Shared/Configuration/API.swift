@@ -1,30 +1,57 @@
 import Foundation
 
-let baseUrl = "http://192.168.70.59:8080"
+let baseUrl = "http://85.214.44.228:8082"
 
 struct GetBooks {
     struct ProductionServer {
         static let url = baseUrl + "/library-core/api/books"
-        static let searchURL = baseUrl + "/library-core/api/books/search"
-        static let loginURL =  baseUrl + "/user/login"
+    }
+    
+    struct APIParameterKey {
+    }
+}
+
+struct Login {
+    struct ProductionServer {
+        static let url = baseUrl + "/user/login"
     }
     
     struct APIParameterKey {
         static let password = "password"
-        static let email = "email"
+        static let username = "username"
     }
 }
 
 struct SearchBook {
     struct ProductionServer {
-        static let url = "http://192.168.70.59:8080/library-core/api/books"
+        static let url = baseUrl + "/library-core/api/books/search"
     }
     
     struct APIParameterKey {
-        static let password = "password"
-        static let email = "email"
+        static let keyword = "keyword"
     }
 }
+
+struct GetComments {
+    struct ProductionServer {
+        static let url = baseUrl + "/library-core/api/books/search"
+    }
+    
+    struct APIParameterKey {
+        static let keyword = "keyword"
+    }
+}
+
+struct AddComment {
+    struct ProductionServer {
+        static let url = baseUrl + "/library-core/api/books/search"
+    }
+    
+    struct APIParameterKey {
+        static let keyword = "keyword"
+    }
+}
+
 
 
 enum HTTPHeaderField: String {
