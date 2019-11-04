@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.view.bookdetail.BookDetailActivity;
+import com.aavn.devday.booklibrary.view.bookdetail.RatingDialog;
 import com.aavn.devday.booklibrary.viewmodel.BookListViewModel;
 
 import java.util.List;
@@ -89,7 +91,18 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_favorite) {
-            Toast.makeText(this, "Clicked Favorite", Toast.LENGTH_SHORT).show();
+            RatingDialog ratingDialog = new RatingDialog(this);
+            ratingDialog.setStarColor(Color.YELLOW)
+                    .setActionListener(new RatingDialog.RatingDialogListener() {
+                        @Override
+                        public void onSubmit(float point) {
+                            Toast.makeText(MainActivity.this, "Point: " + point, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onCancel() {
+                        }
+                    }).show();
         }
         return super.onOptionsItemSelected(item);
     }
