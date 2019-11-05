@@ -49,6 +49,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         notifyDataSetChanged();
     }
 
+    void clearData(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     void setListener(BookSelectListener listener) {
         this.listener = listener;
     }
@@ -77,11 +82,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
             if (data.getDetails() != null && !data.getDetails().isEmpty()) {
                 BookDetail bookDetail = data.getDetails().get(0);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription(), Html.FROM_HTML_MODE_COMPACT));
-                } else {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription()));
-                }
+                authorTv.setText(bookDetail.getSource());
+                bindDescription(bookDetail.getDescription());
+
                 Glide.with(coverIv)
                         .load(bookDetail.getCoverUrl())
                         .placeholder(R.drawable.book_cover_placeholder)
@@ -89,6 +92,19 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
                         .into(coverIv);
             }
             cardItem.setOnClickListener(v -> listener.onItemSelected(data));
+        }
+
+        private void bindDescription(String rawData){
+            String description = "";
+
+            if(rawData != null && rawData.length() > 0){
+                description = rawData;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                briefDesTv.setText(Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                briefDesTv.setText(Html.fromHtml(description));
+            }
         }
     }
 

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
         int id = item.getItemId();
         if (id == R.id.action_favorite) {
             RatingDialog ratingDialog = new RatingDialog(this);
-            ratingDialog.setStarColor(Color.YELLOW)
+            ratingDialog.setStarColor(MainActivity.this.getResources().getColor(R.color.star))
                     .setActionListener(new RatingDialog.RatingDialogListener() {
                         @Override
                         public void onSubmit(float point) {
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
                     case LOADING:
                         tvErrorMsg.setVisibility(View.GONE);
                         loadingView.setVisibility(View.VISIBLE);
+                        bookListAdapter.clearData();
                         break;
                     case SUCCESS:
                         loadingView.setVisibility(View.GONE);

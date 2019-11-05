@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.aavn.devday.booklibrary.R;
 
 public class RatingDialog implements DialogInterface.OnClickListener {
-    private final static String DEFAULT_TITLE = "Rate this app";
+    private final static String DEFAULT_TITLE = "Rate this book";
     private final static String DEFAULT_TEXT = "How much do you love this book?";
     private final static String DEFAULT_POSITIVE = "Ok";
     private final static String DEFAULT_NEGATIVE = "Cancel";
