@@ -26,6 +26,32 @@ enum ShowBook
         }
     }
     
+    enum Rating {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var book: Book?
+        }
+        struct ViewModel
+        {
+        }
+    }
+    
+    enum Comment {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var book: Book?
+        }
+        struct ViewModel
+        {
+        }
+    }
+    
     enum GetCommand
     {
         struct Request

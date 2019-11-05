@@ -33,7 +33,7 @@ class BooksApi: BooksStoreProtocol, BooksStoreUtilityProtocol
     func searchBooks(textSearch: String, completionHandler: @escaping (() throws -> [Book]) -> Void) {
         let url = SearchBook.ProductionServer.url
         var request = URLRequest(url:NSURL(string: url)! as URL)
-        request.httpMethod = ApiMethod.POST.rawValue
+        request.httpMethod = SearchBook.ProductionServer.method
         request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         request.timeoutInterval = 3600000 
         let values = [SearchBook.APIParameterKey.keyword: textSearch]

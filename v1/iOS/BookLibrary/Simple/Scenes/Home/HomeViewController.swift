@@ -137,7 +137,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell?.bookTitleLabel.text = book.title
         if(!book.coverUrl.isEmpty) {
             let url = URL(string: book.coverUrl)!
-            let image =  UIImage(named: "book")
+            let image =  UIImage(named: "edition_placeholder")
             cell!.imgCover.kf.setImage(with: url, placeholder: image)
         }
         cell?.sourceLabel.text = book.author
