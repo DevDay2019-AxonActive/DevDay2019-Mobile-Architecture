@@ -33,11 +33,11 @@ public class BookDetailViewModel extends ViewModel {
         this.bookRepository = bookRepository;
     }
 
-    public LiveData<ResponseData<BookDetail>> getBookDetail() {
+    public LiveData<ResponseData<BookDetail>> observeBookDetail() {
         return bookDetail;
     }
 
-    public void getBookDetail(Integer bookId) {
+    public void getBookDetailData(Integer bookId) {
         bookDetail.setValue(ResponseData.loading());
 
         bookRepository.getBookDetail(bookId)
