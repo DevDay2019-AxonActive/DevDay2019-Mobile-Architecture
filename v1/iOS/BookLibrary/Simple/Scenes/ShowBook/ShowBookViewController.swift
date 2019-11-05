@@ -95,24 +95,39 @@ class InfoCell: UITableViewCell {
     @IBOutlet weak var lblRating: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var ratingView: FloatRatingView!
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        ratingView.delegate = self
+        ratingView.backgroundColor = UIColor.clear
         ratingView.contentMode = UIView.ContentMode.scaleAspectFit
         ratingView.type = .floatRatings
     }
+    
+    func bindingData(floatDelegate: FloatRatingViewDelegate, book: ShowBook.GetBook.ViewModel.DisplayedBookDetail) {
+        ratingView.delegate = floatDelegate
+        self.lblName.text = book.title
+        self.lblSource.text = book.author
+        self.lblDescription.text = "\(String(describing: book.description)) \(String(describing: book.title)) \(String(describing: book.title))"
+        
+        if(!(book.coverUrl.isEmpty)) {
+            let url = URL(string: book.coverUrl)!
+            let image =  UIImage(named: "book")
+            self.imgCover.kf.setImage(with: url, placeholder: image)
+        }
+    }
 }
 
-extension InfoCell: FloatRatingViewDelegate {
+extension ShowBookViewController: FloatRatingViewDelegate {
 
     // MARK: FloatRatingViewDelegate
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double) {
+        print("rating")
 //        liveLabel.text = String(format: "%.2f", self.floatRatingView.rating)
     }
     
     func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Double) {
+        print("rating2")
+        interactor.rating(rating)
 //        updatedLabel.text = String(format: "%.2f", self.floatRatingView.rating)
     }
     
@@ -135,15 +150,8 @@ extension ShowBookViewController: UITableViewDataSource, UITableViewDelegate {
               cell = InfoCell(style: .value1, reuseIdentifier: "infoCell")
             }
             
-            
-            cell?.lblName.text = book?.title
-            cell?.lblSource.text = book?.author
-            cell?.lblDescription.text = "\(String(describing: book?.description)) \(String(describing: book?.title)) \(String(describing: book?.title))"
-            
-            if(!(book?.coverUrl.isEmpty ?? true)) {
-                let url = URL(string: book!.coverUrl)!
-                let image =  UIImage(named: "book")
-                cell!.imgCover.kf.setImage(with: url, placeholder: image)
+            if let book = self.book {
+                cell?.bindingData(floatDelegate: self, book: book)
             }
             return cell!
         } else {

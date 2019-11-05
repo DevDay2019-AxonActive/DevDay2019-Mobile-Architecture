@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D349E71236BC33C008BC7B1 /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D349E70236BC33C008BC7B1 /* CommentApi.swift */; };
+		2D349E73236BC3F3008BC7B1 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D349E72236BC3F3008BC7B1 /* Command.swift */; };
+		2D4529B22370344A00FE4123 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4529B12370344A00FE4123 /* FloatRatingView.swift */; };
 		2DD6625523547F4B000D66D0 /* BookApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6625423547F4B000D66D0 /* BookApi.swift */; };
 		2DD6625823547FFE000D66D0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6625723547FFE000D66D0 /* API.swift */; };
 		2DD6625A23548488000D66D0 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6625923548488000D66D0 /* Book.swift */; };
@@ -73,6 +76,9 @@
 		05A8A04C6AB7C946CADDBA9B /* Pods_Simple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1426396E62360EA0EB17ED15 /* Pods-Simple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple.release.xcconfig"; path = "Target Support Files/Pods-Simple/Pods-Simple.release.xcconfig"; sourceTree = "<group>"; };
 		2B584EA23BFB6CBAD10BA0F4 /* Pods-Simple-SimpleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-SimpleUITests.release.xcconfig"; path = "Target Support Files/Pods-Simple-SimpleUITests/Pods-Simple-SimpleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2D349E70236BC33C008BC7B1 /* CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
+		2D349E72236BC3F3008BC7B1 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		2D4529B12370344A00FE4123 /* FloatRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		2DD6625423547F4B000D66D0 /* BookApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookApi.swift; sourceTree = "<group>"; };
 		2DD6625723547FFE000D66D0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		2DD6625923548488000D66D0 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -155,11 +161,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D4529AF237033F200FE4123 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				2D4529B02370342700FE4123 /* FloatRatingView */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		2D4529B02370342700FE4123 /* FloatRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				2D4529B12370344A00FE4123 /* FloatRatingView.swift */,
+			);
+			path = FloatRatingView;
+			sourceTree = "<group>";
+		};
 		2DD6625223547ECB000D66D0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				2DD6625423547F4B000D66D0 /* BookApi.swift */,
 				9964E19D235FFF3300DE2661 /* LoginApi.swift */,
+				2D349E70236BC33C008BC7B1 /* CommentApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -169,6 +192,7 @@
 			children = (
 				2DD6625923548488000D66D0 /* Book.swift */,
 				2DD6625D23549456000D66D0 /* Response.swift */,
+				2D349E72236BC3F3008BC7B1 /* Command.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +375,7 @@
 		71CCE17620E0AE7E00782DF4 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2D4529AF237033F200FE4123 /* ThirdParty */,
 				71CCE17720E0AF0400782DF4 /* AuthenticationWorker.swift */,
 				2DD6625B23548783000D66D0 /* BooksWorker.swift */,
 				2DD6625623547FE5000D66D0 /* Configuration */,
@@ -613,6 +638,7 @@
 				2DD6625E23549456000D66D0 /* Response.swift in Sources */,
 				71CCE17020E0A40700782DF4 /* HomeInteractor.swift in Sources */,
 				71CCE16420E0A3F600782DF4 /* WelcomeInteractor.swift in Sources */,
+				2D349E73236BC3F3008BC7B1 /* Command.swift in Sources */,
 				2DD6625523547F4B000D66D0 /* BookApi.swift in Sources */,
 				71CCE16820E0A3F600782DF4 /* WelcomeViewController.swift in Sources */,
 				2DF820722367D2EC007C9257 /* ShowBookWorker.swift in Sources */,
@@ -624,8 +650,10 @@
 				2DF820732367D2EC007C9257 /* ShowBookRouter.swift in Sources */,
 				2DF820752367D2EC007C9257 /* ShowBookViewController.swift in Sources */,
 				71CCE17320E0A40700782DF4 /* HomeRouter.swift in Sources */,
+				2D4529B22370344A00FE4123 /* FloatRatingView.swift in Sources */,
 				2DD6625823547FFE000D66D0 /* API.swift in Sources */,
 				71CCE17420E0A40700782DF4 /* HomeViewController.swift in Sources */,
+				2D349E71236BC33C008BC7B1 /* CommentApi.swift in Sources */,
 				2DD6625C23548783000D66D0 /* BooksWorker.swift in Sources */,
 				2DD6625A23548488000D66D0 /* Book.swift in Sources */,
 			);

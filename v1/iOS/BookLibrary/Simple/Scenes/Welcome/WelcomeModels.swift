@@ -2,22 +2,22 @@ import UIKit
 
 enum Welcome
 {
-  // MARK: Use cases
-  
-  enum Login
-  {
-    struct Request
+    // MARK: Use cases
+    
+    enum Login
     {
-      var userID: String?
-      var password: String?
+        struct Request
+        {
+            var userID: String?
+            var password: String?
+        }
+        struct Response
+        {
+            var success: Bool
+        }
+        struct ViewModel
+        {
+            var success: Bool
+        }
     }
-    struct Response
-    {
-      var success: Bool
-    }
-    struct ViewModel
-    {
-      var success: Bool
-    }
-  }
 }
