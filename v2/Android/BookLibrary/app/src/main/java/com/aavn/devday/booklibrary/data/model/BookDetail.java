@@ -3,49 +3,84 @@ package com.aavn.devday.booklibrary.data.model;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;
 
-public class BookDetail {
+import java.util.List;
 
-//  "id": 26,
-//          "name": "Waiting for Nick / Considering Kate (Stanislaski, Books 5 & 6) (Stanislaski Stories)",
-//          "author": "Waiting for Nick / Considering Kate (Stanislaski, Books 5 & 6) (Stanislaski Stories)",
-//          "serialNumber": "037328568X",
-//          "details": [],
-//          "subscribers": null
+public class BookDetail {
 
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("name")
+
+    @SerializedName("source")
     @Expose
-    private String name;
-    @SerializedName("author")
+    private String source;
+
+    @SerializedName("description")
     @Expose
-    private String author;
-    @SerializedName("serialNumber")
+    private String description;
+
+    @SerializedName("coverUrl")
     @Expose
-    private String serialNumber;
+    private String coverUrl;
 
-    public String getName() {
-        return name;
+    @SerializedName("comments")
+    @Expose
+    private List<Comment> comments;
+
+    @SerializedName("ratings")
+    @Expose
+    private List<Rating> ratings;
+
+    @SerializedName("tags")
+    @Expose
+    private List<Tag> tags;
+
+
+    public String getSource() {
+        return source;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getSerialNumber() {
-        return serialNumber;
+    public String getCoverUrl() {
+        return coverUrl;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }

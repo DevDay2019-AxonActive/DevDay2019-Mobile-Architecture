@@ -11,11 +11,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aavn.devday.booklibrary.R;
+import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.BookDetail;
+import com.aavn.devday.booklibrary.data.model.Rating;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.utils.Constants;
 import com.aavn.devday.booklibrary.viewmodel.BookDetailViewModel;
 import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
 
@@ -25,11 +29,15 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView tvTitle;
     private TextView tvDescription;
     private TextView tvAuthor;
+    private TextView ratingValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         bindView();
         bookDetailViewModel = ViewModelProviders.of(this).get(BookDetailViewModel.class);
         observeBookDetailData();
@@ -39,31 +47,42 @@ public class BookDetailActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void bindView() {
         progressBar = findViewById(R.id.progress_bar);
         imageView = findViewById(R.id.iv_book_cover);
         tvTitle = findViewById(R.id.tv_item_book_title);
         tvDescription = findViewById(R.id.tv_item_book_brief_description);
         tvAuthor = findViewById(R.id.tv_item_book_author);
+        ratingValue = findViewById(R.id.tv_item_book_author);
     }
     private void observeBookDetailData() {
-        bookDetailViewModel.observeBookDetail().observe(this, new Observer<ResponseData<BookDetail>>() {
+        bookDetailViewModel.observeBookDetail().observe(this, new Observer<ResponseData<Book>>() {
             @Override
-            public void onChanged(ResponseData<BookDetail> response) {
+            public void onChanged(ResponseData<Book> response) {
                 switch (response.getState()) {
                     case LOADING:
                         progressBar.setVisibility(View.VISIBLE);
                         break;
                     case SUCCESS:
                         progressBar.setVisibility(View.GONE);
-                        tvTitle.setText(response.getData().getName());
-                        tvDescription.setText(response.getData().getSerialNumber());
+                        tvTitle.setText(response.getData().getTitle());
                         tvAuthor.setText(response.getData().getAuthor());
-//                        Glide.with(imageView)
-//                                .load(response.getData().getCoverUrl())
-//                                .placeholder(R.drawable.book_cover_placeholder)
-//                                .thumbnail(0.1f)
-//                                .into(imageView);
+                        ratingValue.setText("Rating: " + getRatingValue(response.getData().getDetails().get(0).getRatings()));
+                        if (response.getData().getDetails().size() > 0) {
+
+                        tvDescription.setText(response.getData().getDetails().get(0).getDescription());
+                        Glide.with(imageView)
+                                .load(response.getData().getDetails().get(0).getCoverUrl())
+                                .placeholder(R.drawable.book_cover_placeholder)
+                                .thumbnail(0.1f)
+                                .into(imageView);
+                        }
                         break;
                     default:
                         progressBar.setVisibility(View.GONE);
@@ -71,5 +90,13 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private int getRatingValue(List<Rating> ratings) {
+        int result = 0;
+        for (Rating rating : ratings) {
+            result+=rating.getValue();
+        }
+        return result/ratings.size();
     }
 }

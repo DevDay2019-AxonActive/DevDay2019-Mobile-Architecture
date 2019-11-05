@@ -22,7 +22,7 @@ public class BookRepository {
         return RetrofitInstance.getRetrofit().create(BookService.class).getDefaultBook();
     }
 
-    public Single<BookDetail> getBookDetail(Integer bookId) {
+    public Single<Book> getBookDetail(Integer bookId) {
         return RetrofitInstance.getRetrofit().create(BookService.class).getBookDetail(bookId);
     }
 

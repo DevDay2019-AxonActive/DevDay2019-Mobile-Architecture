@@ -21,5 +21,5 @@ public interface BookService {
     Single<List<Book>> getDefaultBook();
 
     @GET("library-core/api/books/{id}")
-    Single<BookDetail> getBookDetail(@Path("id") int bookId);
+    Single<Book> getBookDetail(@Path("id") int bookId);
 }

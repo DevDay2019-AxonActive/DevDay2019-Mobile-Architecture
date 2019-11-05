@@ -18,7 +18,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class BookDetailViewModel extends ViewModel {
-    private MutableLiveData<ResponseData<BookDetail>> bookDetail = new MutableLiveData<>();
+    private MutableLiveData<ResponseData<Book>> bookDetail = new MutableLiveData<>();
 
     private BookRepository bookRepository;
 
@@ -33,7 +33,7 @@ public class BookDetailViewModel extends ViewModel {
         this.bookRepository = bookRepository;
     }
 
-    public LiveData<ResponseData<BookDetail>> observeBookDetail() {
+    public LiveData<ResponseData<Book>> observeBookDetail() {
         return bookDetail;
     }
 
@@ -43,14 +43,14 @@ public class BookDetailViewModel extends ViewModel {
         bookRepository.getBookDetail(bookId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<BookDetail>() {
+                .subscribe(new SingleObserver<Book>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
                     }
 
                     @Override
-                    public void onSuccess(BookDetail book) {
+                    public void onSuccess(Book book) {
                         bookDetail.setValue(ResponseData.success(book));
                     }
 
