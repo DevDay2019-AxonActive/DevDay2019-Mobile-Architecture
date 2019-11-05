@@ -47,6 +47,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         notifyDataSetChanged();
     }
 
+    void clearData(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     static class BookViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleTv;
@@ -69,11 +74,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             if (data.getDetails() != null && !data.getDetails().isEmpty()) {
                 BookDetail bookDetail = data.getDetails().get(0);
                 authorTv.setText(bookDetail.getSource());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription(), Html.FROM_HTML_MODE_COMPACT));
-                } else {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription()));
-                }
+                bindDescription(bookDetail.getDescription());
+
                 Glide.with(coverIv)
                         .load(bookDetail.getCoverUrl())
                         .placeholder(R.drawable.book_cover_placeholder)
@@ -81,6 +83,19 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
                         .into(coverIv);
             } else {
                 authorTv.setText(data.getAuthor());
+            }
+        }
+
+        private void bindDescription(String rawData){
+            String description = "";
+
+            if(rawData != null && rawData.length() > 0){
+                description = rawData;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                briefDesTv.setText(Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                briefDesTv.setText(Html.fromHtml(description));
             }
         }
     }
