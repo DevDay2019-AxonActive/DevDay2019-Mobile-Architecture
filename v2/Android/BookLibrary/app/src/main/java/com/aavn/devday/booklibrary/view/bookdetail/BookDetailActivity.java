@@ -85,8 +85,8 @@ public class BookDetailActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         tvTitle.setText(response.getData().getTitle());
                         tvAuthor.setText(response.getData().getAuthor());
-                        ratingValue.setText("Rating: " + getRatingValue(response.getData().getDetails().get(0).getRatings()));
                         if (response.getData().getDetails().size() > 0) {
+                            ratingValue.setText("Rating: " + getRatingValue(response.getData().getDetails().get(0).getRatings()));
                             tvDescription.setText(response.getData().getDetails().get(0).getDescription());
                             if (response.getData().getDetails().get(0).getComments().size() > 0) {
                                 cmtAdapter.setItems(response.getData().getDetails().get(0).getComments());
