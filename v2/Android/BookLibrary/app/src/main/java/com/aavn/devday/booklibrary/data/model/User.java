@@ -3,6 +3,8 @@ package com.aavn.devday.booklibrary.data.model;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
+    @SerializedName("userId")
+    private int userId;
     @SerializedName("username")
     private String username;
     @SerializedName("fullName")
@@ -36,5 +38,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

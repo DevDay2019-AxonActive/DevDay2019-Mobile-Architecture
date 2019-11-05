@@ -28,12 +28,14 @@ import com.aavn.devday.booklibrary.utils.Constants;
 import com.aavn.devday.booklibrary.view.bookdetail.BookDetailActivity;
 import com.aavn.devday.booklibrary.view.bookdetail.RatingDialog;
 import com.aavn.devday.booklibrary.viewmodel.BookListViewModel;
+import com.aavn.devday.booklibrary.viewmodel.RatingBookViewModel;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BookSelectListener {
 
     private BookListViewModel bookListViewModel;
+    private RatingBookViewModel ratingtBookViewModel;
     private BookListAdapter bookListAdapter;
     private EditText edtBookKeyword;
     private View loadingView;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
         bindView();
 
         bookListViewModel = ViewModelProviders.of(this).get(BookListViewModel.class);
+        ratingtBookViewModel = ViewModelProviders.of(this).get(RatingBookViewModel.class);
         observeBookListData();
 
         bookListAdapter = new BookListAdapter();
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
                         @Override
                         public void onSubmit(float point) {
                             Toast.makeText(MainActivity.this, "Point: " + point, Toast.LENGTH_SHORT).show();
+                            ratingtBookViewModel.performRateBook(UserManager.getInstance().getUserInfo().getUserId(), 1, point);
                         }
 
                         @Override
