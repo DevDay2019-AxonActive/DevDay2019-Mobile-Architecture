@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
 
         loadDefaultBookList();
 
-        Toast.makeText(this, "Welcome " + UserManager.getInstance().getUserInfo().getUsername(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Welcome " + UserManager.getInstance().getUserInfo().getUsername(), Toast.LENGTH_LONG).show();
     }
 
     private void bindView() {

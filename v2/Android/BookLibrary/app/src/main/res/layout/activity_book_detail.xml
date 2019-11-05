@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.bookdetail.BookDetailActivity">
     <LinearLayout
+        android:id="@+id/ln_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -63,6 +64,33 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ln_detail"
+        android:layout_toStartOf="@id/btn_send"
+        android:hint="Comment"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ln_detail"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Send"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/comment"
+        android:layout_margin="10dp"
+        android:scrollbars="vertical" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
