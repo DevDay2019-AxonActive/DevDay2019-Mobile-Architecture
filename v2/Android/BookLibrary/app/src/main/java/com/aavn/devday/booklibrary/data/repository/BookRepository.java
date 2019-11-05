@@ -1,15 +1,19 @@
 package com.aavn.devday.booklibrary.data.repository;
 
 import com.aavn.devday.booklibrary.data.model.BookDetail;
+import com.aavn.devday.booklibrary.data.model.RateBookRequest;
 import com.aavn.devday.booklibrary.data.remote.RetrofitInstance;
 import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.SearchBookRequest;
 import com.aavn.devday.booklibrary.data.remote.service.BookService;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class BookRepository {
@@ -41,6 +45,12 @@ public class BookRepository {
 //        dummyBookList.add(new Book("Core Java", "Cay S. Horstmann", dummyBookDetailList));
 
         return Single.just(dummyBookList);
+    }
+
+    public Single<Boolean> rateBook(int userId, int bookId, float point){
+        RequestBody body =
+                RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), String.valueOf(point));
+        return RetrofitInstance.getRetrofit().create(BookService.class).rateBook(userId, bookId, body);
     }
 
 }
