@@ -34,7 +34,7 @@ class BooksWorkerTests: XCTestCase
     
     class BooksApiSpy: BooksStoreProtocol
     {
-       
+        
         // MARK: Method call expectations
         
         var fetchBooksCalled = false
@@ -59,7 +59,7 @@ class BooksWorkerTests: XCTestCase
                 }
             }
         }
-               
+        
     }
     
     // MARK: - Tests
@@ -85,7 +85,7 @@ class BooksWorkerTests: XCTestCase
             XCTAssert(BooksWorkerTests.testBooks.contains(book), "Fetched books should match the books in the data source")
         }
     }
-   
+    
     func testSearchBooksShouldReturnListOfBooks()
     {
         // Given

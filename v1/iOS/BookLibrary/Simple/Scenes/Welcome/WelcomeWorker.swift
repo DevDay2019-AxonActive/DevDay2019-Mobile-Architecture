@@ -2,7 +2,7 @@ import UIKit
 
 class WelcomeWorker
 {
-  func doSomeWork()
-  {
-  }
+    func doSomeWork()
+    {
+    }
 }

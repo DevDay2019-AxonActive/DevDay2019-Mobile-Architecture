@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     case LOADING:
                         tvErrorMsg.setVisibility(View.GONE);
                         loadingView.setVisibility(View.VISIBLE);
+                        bookListAdapter.clearData();
                         break;
                     case SUCCESS:
                         loadingView.setVisibility(View.GONE);

@@ -11,13 +11,13 @@ class AuthenticationWorkerTest: XCTestCase
     
     override func setUp()
     {
-      super.setUp()
-      setupAuthenticationWorker()
+        super.setUp()
+        setupAuthenticationWorker()
     }
     
     override func tearDown()
     {
-      super.tearDown()
+        super.tearDown()
     }
     
     // MARK: - Test setup

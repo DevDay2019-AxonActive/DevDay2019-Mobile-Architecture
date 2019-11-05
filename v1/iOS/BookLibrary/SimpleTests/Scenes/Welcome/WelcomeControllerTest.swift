@@ -75,7 +75,7 @@ class WelcomeViewControllerTest: XCTestCase
         
         // Then
         XCTAssert(welcomeBusinessLogicSpy.loginCalled, "It should login when the user taps the Login button")
-
+        
     }
     
     

@@ -2,7 +2,7 @@ import UIKit
 
 class HomeWorker
 {
-  func doSomeWork()
-  {
-  }
+    func doSomeWork()
+    {
+    }
 }
