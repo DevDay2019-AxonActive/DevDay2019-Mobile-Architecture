@@ -24,6 +24,7 @@ import com.aavn.devday.booklibrary.R;
 import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
+import com.aavn.devday.booklibrary.utils.Constants;
 import com.aavn.devday.booklibrary.view.bookdetail.BookDetailActivity;
 import com.aavn.devday.booklibrary.view.bookdetail.RatingDialog;
 import com.aavn.devday.booklibrary.viewmodel.BookListViewModel;
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
     @Override
     public void onItemSelected(Book book) {
         Intent intent = new Intent(this, BookDetailActivity.class);
+        intent.putExtra(Constants.BOOK_ID, book.getId());
         startActivity(intent);
     }
 

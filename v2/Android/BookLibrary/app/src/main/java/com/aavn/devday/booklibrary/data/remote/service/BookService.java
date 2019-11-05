@@ -15,11 +15,11 @@ import retrofit2.http.Path;
 
 public interface BookService {
     @POST("library-core/api/books/search")
-    public Single<List<Book>> searchBook(@Body SearchBookRequest body);
+    Single<List<Book>> searchBook(@Body SearchBookRequest body);
 
     @GET("library-core/api/books")
-    public Single<List<Book>> getDefaultBook();
+    Single<List<Book>> getDefaultBook();
 
-    @GET("library-core/api/books/{bookId}")
-    public Single<BookDetail> getBookDetail(@Path("id") int bookId);
+    @GET("library-core/api/books/{id}")
+    Single<BookDetail> getBookDetail(@Path("id") int bookId);
 }

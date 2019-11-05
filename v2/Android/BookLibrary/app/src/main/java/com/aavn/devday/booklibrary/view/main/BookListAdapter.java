@@ -77,17 +77,17 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             authorTv.setText(data.getAuthor());
             if (data.getDetails() != null && !data.getDetails().isEmpty()) {
                 BookDetail bookDetail = data.getDetails().get(0);
-                authorTv.setText(bookDetail.getSource());
+                authorTv.setText(bookDetail.getAuthor());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription(), Html.FROM_HTML_MODE_COMPACT));
+                    briefDesTv.setText(Html.fromHtml(bookDetail.getName(), Html.FROM_HTML_MODE_COMPACT));
                 } else {
-                    briefDesTv.setText(Html.fromHtml(bookDetail.getDescription()));
+                    briefDesTv.setText(Html.fromHtml(bookDetail.getName()));
                 }
-                Glide.with(coverIv)
-                        .load(bookDetail.getCoverUrl())
-                        .placeholder(R.drawable.book_cover_placeholder)
-                        .thumbnail(0.1f)
-                        .into(coverIv);
+//                Glide.with(coverIv)
+//                        .load(bookDetail.getCoverUrl())
+//                        .placeholder(R.drawable.book_cover_placeholder)
+//                        .thumbnail(0.1f)
+//                        .into(coverIv);
             } else {
                 authorTv.setText(data.getAuthor());
             }

@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Book {
+    @SerializedName("id")
+    private Integer id;
+
     @SerializedName("name")
     private String title;
 
@@ -18,6 +21,15 @@ public class Book {
         this.title = title;
         this.author = author;
         this.details = details;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
