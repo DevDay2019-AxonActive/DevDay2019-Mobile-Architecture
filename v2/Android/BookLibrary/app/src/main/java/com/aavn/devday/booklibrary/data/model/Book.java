@@ -17,7 +17,8 @@ public class Book {
     @SerializedName("details")
     private List<BookDetail> details;
 
-    public Book(String title, String author, List<BookDetail> details) {
+    public Book(Integer id, String title, String author, List<BookDetail> details) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.details = details;

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.aavn.devday.booklibrary.data.helper.BookDataHelper;
 import com.aavn.devday.booklibrary.data.model.Book;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.data.repository.BookRepository;
@@ -50,7 +51,12 @@ public class BookListViewModel extends ViewModel {
 
                     @Override
                     public void onSuccess(List<Book> books) {
-                        bookListLiveData.setValue(ResponseData.success(books));
+                        if (books != null) {
+                            List<Book> validBookList = BookDataHelper.validateData(books);
+                            bookListLiveData.setValue(ResponseData.success(validBookList));
+                        } else {
+                            bookListLiveData.setValue(null);
+                        }
                     }
 
                     @Override

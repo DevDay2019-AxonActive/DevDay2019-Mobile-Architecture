@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
 
                         @Override
                         public void onCancel() {
+                            //do nothing
                         }
                     }).show();
         }
@@ -114,9 +115,13 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
 
     @Override
     public void onItemSelected(Book book) {
-        Intent intent = new Intent(this, BookDetailActivity.class);
-        intent.putExtra(Constants.BOOK_ID, book.getId());
-        startActivity(intent);
+        if (book.getId() != null) {
+            Intent intent = new Intent(this, BookDetailActivity.class);
+            intent.putExtra(Constants.BOOK_ID, book.getId());
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Can not open this book!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void loadDefaultBookList() {

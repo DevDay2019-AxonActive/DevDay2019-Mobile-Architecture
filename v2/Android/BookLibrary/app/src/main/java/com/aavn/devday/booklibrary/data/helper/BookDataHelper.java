@@ -43,7 +43,7 @@ public class BookDataHelper {
             BookDetail bookDetail = copyBookDetail(bookDetailItem);
             List<BookDetail> bookDetails = new ArrayList<>();
             bookDetails.add(bookDetail);
-            Book book = new Book(rawdata.getTitle(), rawdata.getAuthor(), bookDetails);
+            Book book = new Book(rawdata.getId(), rawdata.getTitle(), rawdata.getAuthor(), bookDetails);
             resultList.add(book);
         }
         return resultList;
