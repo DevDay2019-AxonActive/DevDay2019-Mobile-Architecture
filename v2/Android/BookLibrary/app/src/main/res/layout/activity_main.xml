@@ -16,10 +16,13 @@
             android:id="@+id/edt_search_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_corner_search_view"
             android:hint="Search book"
             android:imeOptions="actionSearch"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:padding="8dp"
             android:singleLine="true"
             android:textSize="18sp" />
 

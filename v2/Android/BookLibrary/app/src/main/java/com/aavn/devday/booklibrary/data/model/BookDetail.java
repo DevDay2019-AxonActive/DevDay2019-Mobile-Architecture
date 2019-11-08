@@ -83,4 +83,12 @@ public class BookDetail {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

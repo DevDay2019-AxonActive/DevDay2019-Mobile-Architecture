@@ -35,7 +35,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements BookSelectListener {
 
     private BookListViewModel bookListViewModel;
-    private RatingBookViewModel ratingtBookViewModel;
     private BookListAdapter bookListAdapter;
     private EditText edtBookKeyword;
     private View loadingView;
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
         bindView();
 
         bookListViewModel = ViewModelProviders.of(this).get(BookListViewModel.class);
-        ratingtBookViewModel = ViewModelProviders.of(this).get(RatingBookViewModel.class);
         observeBookListData();
 
         bookListAdapter = new BookListAdapter();
@@ -83,34 +81,6 @@ public class MainActivity extends AppCompatActivity implements BookSelectListene
         tvErrorMsg = findViewById(R.id.tv_error_message);
         rvBookList = findViewById(R.id.rv_book_list);
         edtBookKeyword = findViewById(R.id.edt_search_book);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_favorite) {
-            RatingDialog ratingDialog = new RatingDialog(this);
-            ratingDialog.setStarColor(MainActivity.this.getResources().getColor(R.color.star))
-                    .setActionListener(new RatingDialog.RatingDialogListener() {
-                        @Override
-                        public void onSubmit(float point) {
-                            Toast.makeText(MainActivity.this, "Point: " + point, Toast.LENGTH_SHORT).show();
-                            ratingtBookViewModel.performRateBook(UserManager.getInstance().getUserInfo().getUserId(), 1, point);
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            //do nothing
-                        }
-                    }).show();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
