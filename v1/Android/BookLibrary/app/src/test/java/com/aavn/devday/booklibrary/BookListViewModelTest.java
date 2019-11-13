@@ -69,6 +69,21 @@ public class BookListViewModelTest {
     }
 
     @Test
+    public void loadDefaultBooks_fail() {
+
+        when(mockBookRepo.getDefaultBook()).thenReturn(Single.error(new IllegalArgumentException("Mock error")));
+
+        mockBookListVM.fetchDefaultBookList();
+
+        ArgumentCaptor<ResponseData<List<Book>>> captor = ArgumentCaptor.forClass(ResponseData.class);
+
+        verify(mockObserver, times(2)).onChanged(captor.capture());
+
+        assertEquals(ResponseData.State.LOADING, captor.getAllValues().get(0).getState());
+        assertEquals(ResponseData.State.ERROR, captor.getAllValues().get(1).getState());
+    }
+
+    @Test
     public void loadDefaultBooks_success() {
         String jsonText = JsonHelper.getInstance().readJSONFromAsset("default_book_data.json");
         Type listType = new TypeToken<List<Book>>() {
@@ -87,6 +102,20 @@ public class BookListViewModelTest {
         assertEquals(ResponseData.State.SUCCESS, captor.getAllValues().get(1).getState());
         assertEquals(54, captor.getAllValues().get(1).getData().size());
         assertEquals("Charlotte's Web", captor.getAllValues().get(1).getData().get(0).getTitle());
+    }
+
+    @Test
+    public void searchBooks_fail() {
+        when(mockBookRepo.searchBook("java")).thenReturn(Single.error(new IllegalArgumentException("Mock error")));
+
+        mockBookListVM.searchBook("java");
+
+        ArgumentCaptor<ResponseData<List<Book>>> captor = ArgumentCaptor.forClass(ResponseData.class);
+
+        verify(mockObserver, times(2)).onChanged(captor.capture());
+
+        assertEquals(ResponseData.State.LOADING, captor.getAllValues().get(0).getState());
+        assertEquals(ResponseData.State.ERROR, captor.getAllValues().get(1).getState());
     }
 
     @Test

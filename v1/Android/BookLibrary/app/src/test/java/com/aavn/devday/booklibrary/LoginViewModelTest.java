@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.Observer;
 
 import com.aavn.devday.booklibrary.common.RxImmediateSchedulerRule;
+import com.aavn.devday.booklibrary.data.manager.UserManager;
 import com.aavn.devday.booklibrary.data.model.ResponseData;
 import com.aavn.devday.booklibrary.data.model.User;
 import com.aavn.devday.booklibrary.data.repository.UserRepository;
@@ -70,6 +71,19 @@ public class LoginViewModelTest {
         assertEquals(ResponseData.State.LOADING, captor.getAllValues().get(0).getState());
         assertEquals(ResponseData.State.SUCCESS, captor.getAllValues().get(1).getState());
         assertEquals("simple", captor.getAllValues().get(1).getData().getUsername());
+        assertEquals("simple", UserManager.getInstance().getUserInfo().getUsername());
+    }
+
+    @Test
+    public void login_fail() {
+        when(mockUserRepo.login("simple", "simple")).thenReturn(Single.error(new IllegalArgumentException("Mock error")));
+        mockLoginVM.login("simple", "simple");
+        ArgumentCaptor<ResponseData<User>> captor = ArgumentCaptor.forClass(ResponseData.class);
+
+        verify(mockObserver, times(2)).onChanged(captor.capture());
+
+        assertEquals(ResponseData.State.LOADING, captor.getAllValues().get(0).getState());
+        assertEquals(ResponseData.State.ERROR, captor.getAllValues().get(1).getState());
     }
 
     @Test
