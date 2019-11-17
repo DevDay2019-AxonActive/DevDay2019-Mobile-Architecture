@@ -92,7 +92,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadDefaultBookList() {
-        bookListViewModel.fetchDefaultBookList();
+        if (bookListViewModel.getBookListLiveData().getValue() != null
+                && bookListViewModel.getBookListLiveData().getValue().getData() != null) {
+            bookListAdapter.setItems(bookListViewModel.getBookListLiveData().getValue().getData());
+        } else {
+            bookListViewModel.fetchDefaultBookList();
+        }
     }
 
     private void observeBookListData() {
