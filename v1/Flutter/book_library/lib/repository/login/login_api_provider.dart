@@ -8,7 +8,7 @@ import '../state.dart';
 class LoginApiProvider {
   Client client = Client();
 
-  final _baseUrl = "85.214.44.228:8082";
+  final _baseUrl = "http://85.214.44.228:8082";
   // final _baseUrl = "http://127.0.0.1:8080";
   final _userLoginEndpoint = "/user/login";
 

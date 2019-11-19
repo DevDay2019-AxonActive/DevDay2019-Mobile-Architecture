@@ -13,7 +13,7 @@ class BookApiProvider {
 
   // base url
   // final _baseUrl = "http://127.0.0.1:8080";
-  final _baseUrl = "https://85.214.44.228:8082";
+  final _baseUrl = "http://85.214.44.228:8082";
   final _listBookEndpoint = "/library-core/api/books";
   final _searchBookEndpoint = "/library-core/api/books/search";
 
