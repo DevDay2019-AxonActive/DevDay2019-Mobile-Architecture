@@ -9,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
-    private static final String BASE_URL = "http://10.0.2.2:8080/";
+    private static final String BASE_URL = "http://85.214.44.228:18080/";
 
     private static OkHttpClient getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
